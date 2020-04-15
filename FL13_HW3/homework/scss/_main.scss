@@ -148,6 +148,7 @@ body {
   }
 
   &_text {
+    color: $color-dark_lighten;
     font-family: 'Source Sans Pro';
     font-size: $fontsize-xlg;
     font-weight: 600;
@@ -307,4 +308,46 @@ body {
     display: flex;
     justify-content: center;
   }
+}
+
+// mark?..
+.header_heading,
+.section_text,
+.section_banner_heading {
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    content: '';
+    background-color: $color-mark_lighten;
+    z-index: -1;
+  }
+}
+
+.header_heading:before {
+  left: 0;
+  width: 4.2em;
+  transform: translateY(-30%);
+  height: .8em;
+}
+
+.section_text {
+  margin-left: auto;
+  margin-right: auto;
+
+  &:before {
+    width: 4.5em;
+    right: 50%;
+    transform: translate(104%, -66%);
+    height: 1.2em;
+  }
+}
+
+.section_banner_heading:before {
+  left: 30%;
+  width: 2.1em;
+  height: 1.6em;
+  transform: translate(-4%, -60%);
 }

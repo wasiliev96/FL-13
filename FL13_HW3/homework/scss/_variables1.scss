@@ -6,6 +6,7 @@ $color-light_darken:#c0c3ce;
 $color-accent:#14a0c7;
 $color-accent_secondary:#699900;
 $color-mark:#2e5cd5;
+$color-mark_lighten:#14a0c7;
 
 // spacing 
 $spacing-xs: .6em;
@@ -31,7 +32,7 @@ sans-serif;
 
 $breakpoints:(xsmall: 400px,
   small:600px,
-  medium: 992px,
+  medium: 1000px,
   large: 1200px,
   xlarge: 1600px);
 
