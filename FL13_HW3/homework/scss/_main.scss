@@ -2,231 +2,248 @@
 // mixins & main rules
 html,
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
-
+a {
+	padding: 0.2em;
+}
+button,
+a {
+}
 body {
-  font-size: $font-base;
-  font-family: $font-base;
+	font-family: $font-base;
+	font-size: $font-base;
 }
-
 .header {
-  height: 95vh;
-  min-width: 600px;
-  background-image: url(../img/m-h-day.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  border-bottom-right-radius: 38%;
-
-  &_heading {
-    font-size: $fontsize-xxlg;
-    font-family: $font-headings;
-    color: $color-dark_lighten;
-    line-height: 1;
-    font-weight: bold;
-    max-width: 50%;
-    margin: $spacing-xs 0 $spacing-xs;
-  }
-
-  &_text {
-    font-size: $fontsize-sm;
-    font-family: Hind;
-    max-width: 700px;
-    color: $color-dark_lighten;
-    margin-bottom: $spacing-xlg;
-  }
-
-  &_button {
-    background-color: $color-accent_secondary;
-    font-family: $font-base;
-    font-weight: bold;
-    border: none;
-    color: $color-light;
-    font-size: $fontsize-sm;
-    padding: $spacing-xs $spacing-lg;
-  }
-
+	background-image: url(../img/m-h-day.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-bottom-right-radius: 38%;
+	height: 95vh;
+	min-width: 600px;
+	@include respond-to(medium) {
+		min-width: auto;
+	}
+	&_heading {
+		color: $color-dark_lighten;
+		font-family: $font-headings;
+		font-size: $fontsize-xxlg;
+		font-weight: bold;
+		line-height: 1;
+		margin: $spacing-xs 0 $spacing-xs;
+		max-width: 50%;
+		@include respond-to(xlarge) {
+			font-size: 6vw;
+		}
+		@include respond-to(medium) {
+			font-size: $fontsize-xlg;
+			max-width: 80%;
+		}
+	}
+	&_text {
+		color: $color-dark_lighten;
+		font-family: Hind;
+		font-size: $fontsize-sm;
+		margin-bottom: $spacing-xlg;
+		max-width: 700px;
+	}
+	&_button {
+		background-color: $color-accent_secondary;
+		border: none;
+		color: $color-light;
+		font-family: $font-base;
+		font-size: $fontsize-sm;
+		font-weight: bold;
+		padding: $spacing-xs $spacing-lg;
+	}
 }
-
 .header-wrap {
-  width: 80%;
-  margin: 0 auto;
+	margin: 0 auto;
+	width: 80%;
+	@include respond-to(medium) {
+		div:last-child {
+			display: flex;
+			flex-direction: column;
+			button {
+				margin: 2em 0;
+			}
+		}
+	}
 }
-
 .landing-logo {
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 170px;
-  margin-top: -5px;
-  margin-left: 0;
-  line-height: 1.2;
-  font-family: 'Hind', sans-serif;
-
-  img {
-    height: 55px;
-    width: 55px;
-  }
-
-  p {
-    color: $color-dark_lighten;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: $fontsize-lg;
-
-    span {
-      font-size: $fontsize-xs;
-    }
-  }
+	align-items: center;
+	display: flex;
+	font-family: 'Hind', sans-serif;
+	font-weight: bold;
+	justify-content: space-between;
+	line-height: 1.2;
+	margin-left: 0;
+	margin-top: -5px;
+	width: 170px;
+	img {
+		height: 55px;
+		width: 55px;
+	}
+	p {
+		align-items: center;
+		color: $color-dark_lighten;
+		display: flex;
+		flex-direction: column;
+		font-size: $fontsize-lg;
+		span {
+			font-size: $fontsize-xs;
+		}
+	}
 }
-
 .login {
-  color: $color-light;
-  font-size: $fontsize-md;
-  font-family: 'Source Sans Pro';
+	color: $color-light;
+	font-family: 'Source Sans Pro';
+	font-size: $fontsize-md;
 }
-
 .header-wrap>div:last-child {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 600px;
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	max-width: 600px;
 }
-
 .section {
-  &_card_wrap {
-    margin: 0 auto;
-  }
-
-  &_text {
-    font-size: $fontsize-xlg;
-    text-align: center;
-    font-weight: 600;
-    font-family: 'Source Sans Pro';
-  }
-
-  &_card {
-    max-width: map-get($breakpoints, large) - 140px;
-    background-color: $color-dark;
-    margin: 0 auto $spacing-md;
-    display: flex;
-    justify-content: space-around;
-    padding: $spacing-md;
-    border-radius: $spacing-xs;
-
-    img {
-      max-height: 100%;
-      width: 40%;
-      object-fit: cover;
-      border-radius: $spacing-xs;
-    }
-
-    &_right_container {
-      color: $color-light;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: $spacing-md;
-    }
-
-    &_heading {
-      font-family: $font-headings;
-      font-weight: 600;
-      font-size: $fontsize-lg;
-      margin-bottom: $spacing-xs;
-    }
-
-    &_text {
-      text-align: justify;
-      font-size: $fontsize-sm;
-      font-weight: 400;
-      max-width: 600px;
-      padding: 0 $spacing-xlg;
-      color: $color-light_darken;
-      margin-bottom: $spacing-xs;
-    }
-  }
-
-  &>div {
-    width: 60%;
-  }
-
-  &_link {
-    font-size: $fontsize-sm;
-    color: $color-light_darken;
-  }
-
-  &_banner {
-    border-radius: $spacing-xs;
-    padding: 0 $spacing-md;
-    margin: 5em auto 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: linear-gradient(to right, $color-accent_secondary, #2e5cd5);
-    transform: translateY(50%);
-
-    &_text_wrap {
-      padding: 0em $spacing-md $spacing-sm $spacing-md;
-
-    }
-
-    &_heading {
-      font-family: 'Source Sans Pro';
-      font-size: $fontsize-lg;
-      font-weight: bold;
-      color: $color-dark_lighten;
-      margin-bottom: $spacing-sm;
-    }
-
-    &_text {
-      font-size: $fontsize-sm;
-      color: $color-light_darken;
-    }
-
-    &_button {
-      @extend .header_button
-    }
-  }
+	&_card_wrap {
+		margin: 0 auto;
+	}
+	&_text {
+		font-family: 'Source Sans Pro';
+		font-size: $fontsize-xlg;
+		font-weight: 600;
+		text-align: center;
+	}
+	&_card {
+		background-color: $color-dark;
+		border-radius: $spacing-xs;
+		display: flex;
+		justify-content: space-around;
+		margin: 0 auto $spacing-md;
+		max-width: map-get($breakpoints, large) - 140px;
+		padding: $spacing-md;
+		img {
+			border-radius: $spacing-xs;
+			max-height: 100%;
+			object-fit: cover;
+			width: 40%;
+			@include respond-to(medium) {
+				display: none;
+			}
+		}
+		&_right_container {
+			align-items: center;
+			color: $color-light;
+			display: flex;
+			flex-direction: column;
+			padding-bottom: $spacing-md;
+		}
+		&_heading {
+			font-family: $font-headings;
+			font-size: $fontsize-lg;
+			font-weight: 600;
+			margin-bottom: $spacing-xs;
+		}
+		&_text {
+			color: $color-light_darken;
+			font-size: $fontsize-sm;
+			font-weight: 400;
+			margin-bottom: $spacing-xs;
+			max-width: 600px;
+			padding: 0 $spacing-xlg;
+			text-align: justify;
+			@include respond-to(medium) {
+				padding: 1em;
+			}
+		}
+	}
+	&>div {
+		width: 60%;
+		@include respond-to(medium) {
+			width: 100%;
+		}
+	}
+	&_link {
+		color: $color-light_darken;
+		font-size: $fontsize-sm;
+	}
+	&_banner {
+		align-items: center;
+		background: linear-gradient(to right, $color-accent_secondary, $color-mark);
+		border-radius: $spacing-xs;
+		display: flex;
+		justify-content: space-around;
+		margin: 5em auto 0;
+		padding: 0 $spacing-md;
+		transform: translateY(50%);
+		@include respond-to(medium) {
+			border-radius: 0;
+			flex-direction: column;
+			margin: 0;
+			padding: 2em;
+			transform: translateY(0);
+		}
+		&_text_wrap {
+			padding: 0em $spacing-md $spacing-sm $spacing-md;
+			@include respond-to(medium) {
+				padding: 0;
+				text-align: center;
+			}
+		}
+		&_heading {
+			color: $color-dark_lighten;
+			font-family: 'Source Sans Pro';
+			font-size: $fontsize-lg;
+			font-weight: bold;
+			margin-bottom: $spacing-sm;
+		}
+		&_text {
+			color: $color-light_darken;
+			font-size: $fontsize-sm;
+		}
+		&_button {
+		}
+	}
 }
-
-
 .footer {
-  width: 100%;
-  background-color: $color-dark_lighten;
-  color: $color-light_darken;
-  padding-top: $spacing-xlg;
-  padding-bottom: $spacing-lg;
-
-  .landing-logo {
-    p {
-      color: $color-light_darken;
-    }
-
-    img {
-      margin-right: $spacing-sm;
-    }
-  }
-
-  &_text {
-    max-width: 450px;
-    font-family: 'Source Sans Pro', sans-serif;
-  }
+	background-color: $color-dark_lighten;
+	color: $color-light_darken;
+	padding-bottom: $spacing-lg;
+	padding-top: $spacing-xlg;
+	width: 100%;
+	@include respond-to(medium) {
+		padding-top: $spacing-md;
+	}
+	.landing-logo {
+		p {
+			color: $color-light_darken;
+		}
+		img {
+			margin-right: $spacing-sm;
+		}
+	}
+	&_text {
+		font-family: 'Source Sans Pro', sans-serif;
+		max-width: 450px;
+	}
 }
-
 .footer-wrap {
-  display: flex;
-  justify-content: space-around;
-
-  &>div,
+	display: flex;
+	justify-content: space-around;
+	@include respond-to(medium) {
+		align-items: center;
+		flex-direction: column;
+		padding: 2em;
+	}
+	&>div,
   &>p,
   &>span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
 }

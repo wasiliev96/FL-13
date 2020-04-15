@@ -5,6 +5,7 @@ $color-light: #ffffff;
 $color-light_darken:#c0c3ce;
 $color-accent:#14a0c7;
 $color-accent_secondary:#699900;
+$color-mark:#2e5cd5;
 
 // spacing 
 $spacing-xs: .6em;
@@ -28,13 +29,14 @@ sans-serif;
 $font-headings: 'Source Sans Pro',
 sans-serif;
 
-$breakpoints:(small:767px,
+$breakpoints:(small:600px,
   medium: 992px,
-  large: 1200px);
+  large: 1200px,
+  xlarge: 1600px);
 
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+    @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
       @content;
     }
   }
@@ -48,3 +50,13 @@ $breakpoints:(small:767px,
 // @include respond-to(small) {
 //   color: tomato;
 // }
+
+@mixin clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover,
+  &:focus {
+    background-color: $color-mark;
+  }
+}
