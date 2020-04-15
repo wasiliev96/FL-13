@@ -7,17 +7,47 @@ body {
 }
 
 body {
-  font-size: 21px;
-  font-family: 'Hind', sans-serif;
+  font-size: $font-base;
+  font-family: $font-base;
 }
 
-header {
-  height: 900px;
+.header {
+  height: 95vh;
+  min-width: 600px;
   background-image: url(../img/m-h-day.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   border-bottom-right-radius: 38%;
+
+  &_heading {
+    font-size: $fontsize-xxlg;
+    font-family: $font-headings;
+    color: $color-dark_lighten;
+    line-height: 1;
+    font-weight: bold;
+    max-width: 50%;
+    margin: $spacing-xs 0 $spacing-xs;
+  }
+
+  &_text {
+    font-size: $fontsize-sm;
+    font-family: Hind;
+    max-width: 700px;
+    color: $color-dark_lighten;
+    margin-bottom: $spacing-xlg;
+  }
+
+  &_button {
+    background-color: $color-accent_secondary;
+    font-family: $font-base;
+    font-weight: bold;
+    border: none;
+    color: $color-light;
+    font-size: $fontsize-sm;
+    padding: $spacing-xs $spacing-lg;
+  }
+
 }
 
 .header-wrap {
@@ -34,6 +64,7 @@ header {
   margin-top: -5px;
   margin-left: 0;
   line-height: 1.2;
+  font-family: 'Hind', sans-serif;
 
   img {
     height: 55px;
@@ -41,49 +72,21 @@ header {
   }
 
   p {
-    color: $color-dark;
+    color: $color-dark_lighten;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2rem;
+    font-size: $fontsize-lg;
 
     span {
-      font-size: .8rem;
+      font-size: $fontsize-xs;
     }
   }
 }
 
-.header_heading {
-  font-size: 5rem;
-  font-family: 'Source Sans Pro', sans-serif;
-  color: $color-dark;
-  line-height: 1;
-  font-weight: bold;
-  max-width: 50%;
-  margin: .5em 0;
-}
-
-.header_text {
-  font-size: 1rem;
-  font-family: Hind;
-  max-width: 700px;
-  color: $color-dark;
-  margin-bottom: 5.5em;
-}
-
-.header_button {
-  background-color: $color-accent_secondary;
-  font-family: 'Hind', sans-serif;
-  font-weight: bold;
-  border: none;
-  color: $color-light;
-  font-size: 1.4rem;
-  padding: .5em 2.5em;
-}
-
 .login {
   color: $color-light;
-  font-size: 1.5rem;
+  font-size: $fontsize-md;
   font-family: 'Source Sans Pro';
 }
 
@@ -94,83 +97,136 @@ header {
   max-width: 600px;
 }
 
-
-.section_text {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-.section_card {
-  max-width: map-get($breakpoints, large);
-  background-color: $color-dark_secondary;
-  margin: 0 auto 2em;
-  display: flex;
-  justify-content: space-around;
-  padding: 1.5em;
-  border-radius: .5em;
-
-  img {
-    max-height: 100%;
-    width: 35%;
-    object-fit: cover;
-    border-radius: .5em;
+.section {
+  &_card_wrap {
+    margin: 0 auto;
   }
 
+  &_text {
+    font-size: $fontsize-xlg;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Source Sans Pro';
+  }
+
+  &_card {
+    max-width: map-get($breakpoints, large) - 140px;
+    background-color: $color-dark;
+    margin: 0 auto $spacing-md;
+    display: flex;
+    justify-content: space-around;
+    padding: $spacing-md;
+    border-radius: $spacing-xs;
+
+    img {
+      max-height: 100%;
+      width: 40%;
+      object-fit: cover;
+      border-radius: $spacing-xs;
+    }
+
+    &_right_container {
+      color: $color-light;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: $spacing-md;
+    }
+
+    &_heading {
+      font-family: $font-headings;
+      font-weight: 600;
+      font-size: $fontsize-lg;
+      margin-bottom: $spacing-xs;
+    }
+
+    &_text {
+      text-align: justify;
+      font-size: $fontsize-sm;
+      font-weight: 400;
+      max-width: 600px;
+      padding: 0 $spacing-xlg;
+      color: $color-light_darken;
+      margin-bottom: $spacing-xs;
+    }
+  }
 
   &>div {
     width: 60%;
   }
+
+  &_link {
+    font-size: $fontsize-sm;
+    color: $color-light_darken;
+  }
+
+  &_banner {
+    border-radius: $spacing-xs;
+    padding: 0 $spacing-md;
+    margin: 5em auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: linear-gradient(to right, $color-accent_secondary, #2e5cd5);
+    transform: translateY(50%);
+
+    &_text_wrap {
+      padding: 0em $spacing-md $spacing-sm $spacing-md;
+
+    }
+
+    &_heading {
+      font-family: 'Source Sans Pro';
+      font-size: $fontsize-lg;
+      font-weight: bold;
+      color: $color-dark_lighten;
+      margin-bottom: $spacing-sm;
+    }
+
+    &_text {
+      font-size: $fontsize-sm;
+      color: $color-light_darken;
+    }
+
+    &_button {
+      @extend .header_button
+    }
+  }
 }
 
-.section_card_right_container {
-  color: $color-light;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 40%;
-}
 
-.section_card_heading {
-  font-weight: 600;
-  font-size: 1.8rem;
-}
+.footer {
+  width: 100%;
+  background-color: $color-dark_lighten;
+  color: $color-light_darken;
+  padding-top: $spacing-xlg;
+  padding-bottom: $spacing-lg;
 
-.section_card_text {
-  text-align: justify;
-  font-weight: 400;
-  max-width: 600px;
-  padding: 0 4em;
-  color: $color-light_secondary;
-}
+  .landing-logo {
+    p {
+      color: $color-light_darken;
+    }
 
-.section_link {
-  color: $color-light;
-}
-
-.section_banner {
-  max-width: 1196px;
-  border-radius: .5em;
-  margin: 8em auto 0;
-  padding: 0 1em 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: linear-gradient(to right, $color-accent_secondary, #2e5cd5);
-
-  &_heading {
-    font-size: 2.3rem;
-    font-weight: bold;
-    color: $color-dark;
-    margin-bottom: 0;
+    img {
+      margin-right: $spacing-sm;
+    }
   }
 
   &_text {
-    margin-top: 0;
-    color: $color-light_secondary;
+    max-width: 450px;
+    font-family: 'Source Sans Pro', sans-serif;
   }
+}
 
-  &_button {
-    @extend .header_button
+.footer-wrap {
+  display: flex;
+  justify-content: space-around;
+
+  &>div,
+  &>p,
+  &>span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

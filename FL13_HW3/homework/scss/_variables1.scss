@@ -1,13 +1,36 @@
-$color-dark: #2c2f3c;
-$color-dark_secondary:#21232e;
+// colors 
+$color-dark_lighten: #2c2f3c;
+$color-dark:#21232e;
 $color-light: #ffffff;
-$color-light_secondary:#c0c3ce;
+$color-light_darken:#c0c3ce;
 $color-accent:#14a0c7;
 $color-accent_secondary:#699900;
 
+// spacing 
+$spacing-xs: .6em;
+$spacing-sm: 1em;
+$spacing-md: 2em;
+$spacing-lg: 3em;
+$spacing-xlg: 5em;
+
+// font-size 
+$font-base: 21px;
+$fontsize-xs: 0.8rem;
+$fontsize-sm: 1.2rem;
+$fontsize-md: 1.6rem;
+$fontsize-lg: 2rem;
+$fontsize-xlg: 2.8rem;
+$fontsize-xxlg: 6rem;
+
+// font-family
+$font-base: 'Hind',
+sans-serif;
+$font-headings: 'Source Sans Pro',
+sans-serif;
+
 $breakpoints:(small:767px,
   medium: 992px,
-  large: 1140px);
+  large: 1200px);
 
 @mixin respond-to($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {

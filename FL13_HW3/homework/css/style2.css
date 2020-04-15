@@ -1,25 +1,14 @@
 /*
-Error: Undefined variable: "$color-dark".
-        on line 44 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
+Error: Undefined variable: "$font-base".
+        on line 10 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss
 
 Backtrace:
-C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:44
+C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:10
 C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss:3
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `with_base'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `visit'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block (2 levels) in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `map'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:444:in `block in visit_rule'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:183:in `with_environment'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:442:in `visit_rule'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
@@ -75,4 +64,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$color-dark\".\A         on line 44 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }
+  content: "Error: Undefined variable: \"$font-base\".\A         on line 10 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }
