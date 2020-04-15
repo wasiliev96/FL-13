@@ -73,10 +73,11 @@ header {
 
 .header_button {
   background-color: $color-accent_secondary;
+  font-family: 'Hind', sans-serif;
+  font-weight: bold;
   border: none;
   color: $color-light;
   font-size: 1.4rem;
-  font-weight: bold;
   padding: .5em 2.5em;
 }
 
@@ -145,4 +146,31 @@ header {
 
 .section_link {
   color: $color-light;
+}
+
+.section_banner {
+  max-width: 1196px;
+  border-radius: .5em;
+  margin: 8em auto 0;
+  padding: 0 1em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(to right, $color-accent_secondary, #2e5cd5);
+
+  &_heading {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: $color-dark;
+    margin-bottom: 0;
+  }
+
+  &_text {
+    margin-top: 0;
+    color: $color-light_secondary;
+  }
+
+  &_button {
+    @extend .header_button
+  }
 }
