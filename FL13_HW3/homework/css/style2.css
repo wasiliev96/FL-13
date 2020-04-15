@@ -1,10 +1,10 @@
 /*
 Error: Undefined variable: "$color-dark".
-        on line 40 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
+        on line 44 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss
 
 Backtrace:
-C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:40
+C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:44
 C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss:3
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
@@ -75,4 +75,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$color-dark\".\A         on line 40 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }
+  content: "Error: Undefined variable: \"$color-dark\".\A         on line 44 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }
