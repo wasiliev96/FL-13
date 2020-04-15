@@ -1,14 +1,18 @@
 /*
-Error: Undefined variable: "$font-base".
-        on line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
+Error: Undefined mixin 'clickable'.
+        on line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss, in `clickable'
+        from line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss
         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss
 
 Backtrace:
+C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:15:in `clickable'
 C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss:15
 C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss:3
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/variable.rb:49:in `_perform'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/script/tree/node.rb:50:in `perform'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:402:in `visit_prop'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:352:in `block in visit_mixin'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:98:in `block in with_mixin'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:135:in `with_frame'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:98:in `with_mixin'
+C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:350:in `visit_mixin'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/perform.rb:162:in `block in visit'
 C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/stack.rb:79:in `block in with_base'
@@ -64,4 +68,4 @@ C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$font-base\".\A         on line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }
+  content: "Error: Undefined mixin 'clickable'.\A         on line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss, in `clickable'\A         from line 15 of C:/Users/wasil/Documents/GitHub/FL-13/FL13_HW3/homework/scss/_main.scss\A         from line 3 of C:\Users\wasil\Documents\GitHub\FL-13\FL13_HW3\homework\scss\style2.scss"; }

@@ -29,7 +29,8 @@ sans-serif;
 $font-headings: 'Source Sans Pro',
 sans-serif;
 
-$breakpoints:(small:600px,
+$breakpoints:(xsmall: 400px,
+  small:600px,
   medium: 992px,
   large: 1200px,
   xlarge: 1600px);
@@ -55,8 +56,16 @@ $breakpoints:(small:600px,
   cursor: pointer;
   transition: background-color 0.15s ease;
 
+  &:focus {
+    outline: none;
+  }
+
   &:hover,
   &:focus {
     background-color: $color-mark;
+  }
+
+  &:active {
+    background-color: $color-dark_lighten;
   }
 }
