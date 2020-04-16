@@ -83,6 +83,7 @@ button {
     url(../img/home-bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center center;
   position: relative;
   color: var(--color-bg);
   margin-bottom: 120px;
@@ -97,6 +98,7 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 1em;
 }
 .hero_heading {
   font-size: var(--font-hero);
@@ -120,7 +122,6 @@ button {
   max-width: 1200px;
   width: 60%;
   margin: 0 auto;
-  padding: 1em;
 }
 .article-card_cover {
   width: 100%;
@@ -149,6 +150,14 @@ button {
   color: var(--color-text);
   margin-bottom: 3em;
 }
+.article-card hr {
+  margin: 5em 0;
+  border: none;
+  color: var(--color-text);
+  background-color: var(--color-text);
+  height: 1px;
+  opacity: 0.2;
+}
 footer {
   background-color: var(--color-heading);
   color: var(--color-text);
@@ -172,4 +181,20 @@ footer {
 }
 .footer-logo {
   text-transform: uppercase;
+}
+
+@media (max-width: 1200px) {
+  .article-card {
+    width: 80%;
+  }
+}
+@media (max-width: 800px) {
+  .header-wrap {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2em 1em;
+  }
+  .article-card {
+    width: calc(100% - 2em);
+  }
 }
