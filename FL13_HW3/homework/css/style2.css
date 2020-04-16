@@ -128,45 +128,49 @@ body {
   background-color: #3b3f50;
   border-radius: 0.6em;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 auto 2em;
   max-width: 1060px;
   padding: 2em; }
+  @media (max-width: 996px) {
+    .section_card {
+      flex-direction: column;
+      align-items: center; } }
   .section_card img {
     border-radius: 0.6em;
-    max-height: 100%;
     object-fit: cover;
-    width: 40%; }
+    flex: 1;
+    max-width: 450px; }
     @media (max-width: 996px) {
       .section_card img {
-        display: none; } }
+        max-width: 600px;
+        width: 100%; } }
   .section_card_right_container {
     align-items: center;
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    padding-bottom: 2em; }
+    max-width: 60%;
+    flex: 1; }
+    @media (max-width: 1200px) {
+      .section_card_right_container {
+        max-width: 100%; } }
   .section_card_heading {
     font-family: "Source Sans Pro", sans-serif;
     font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 0.6em; }
+    font-weight: 600; }
   .section_card_text {
     color: #c0c3ce;
     font-size: 1.2rem;
     font-weight: 400;
     margin-bottom: 0.6em;
     max-width: 600px;
-    padding: 0 5em;
-    text-align: justify; }
+    text-align: justify;
+    padding: 0 2em;
+    margin: 0; }
     @media (max-width: 996px) {
       .section_card_text {
         padding: 1em; } }
-.section > div {
-  width: 60%; }
-  @media (max-width: 996px) {
-    .section > div {
-      width: 100%; } }
 .section_link {
   color: #c0c3ce;
   font-size: 1.2rem; }
@@ -178,7 +182,8 @@ body {
   justify-content: space-around;
   margin: 5em auto 0;
   padding: 0 2em;
-  transform: translateY(50%); }
+  transform: translateY(50%);
+  max-width: 1200px; }
   @media (max-width: 996px) {
     .section_banner {
       border-radius: 0;
@@ -206,7 +211,7 @@ body {
       padding: 0.6em 1.5em; } }
 
 .footer {
-  background-color: #ffffff;
+  background-color: #3b3f50;
   color: #c0c3ce;
   padding-bottom: 3em;
   padding-top: 5em;

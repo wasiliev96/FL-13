@@ -222,19 +222,24 @@ body {
     background-color: $color-cards-bg;
     border-radius: $spacing-xs;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0 auto $spacing-md;
     max-width: map-get($breakpoints, large) - 140px;
     padding: $spacing-md;
+    @include respond-to(medium) {
+      flex-direction: column;
+      align-items: center;
+    }
 
     img {
       border-radius: $spacing-xs;
-      max-height: 100%;
       object-fit: cover;
-      width: 40%;
+      flex: 1;
+      max-width: 450px;
 
       @include respond-to(medium) {
-        display: none;
+        max-width: 600px;
+        width: 100%;
       }
     }
 
@@ -243,14 +248,19 @@ body {
       color: $color-text;
       display: flex;
       flex-direction: column;
-      padding-bottom: $spacing-md;
+      // padding-bottom: $spacing-md;
+      max-width: 60%;
+      flex: 1;
+      @include respond-to(large) {
+        max-width: 100%;
+      }
     }
 
     &_heading {
       font-family: $font-headings;
       font-size: $fontsize-lg;
       font-weight: 600;
-      margin-bottom: $spacing-xs;
+      // margin-bottom: $spacing-xs;
     }
 
     &_text {
@@ -259,20 +269,13 @@ body {
       font-weight: 400;
       margin-bottom: $spacing-xs;
       max-width: 600px;
-      padding: 0 $spacing-xlg;
+      // padding: 0 $spacing-xlg;
       text-align: justify;
-
+      padding: 0 $spacing-md;
+      margin: 0;
       @include respond-to(medium) {
         padding: 1em;
       }
-    }
-  }
-
-  & > div {
-    width: 60%;
-
-    @include respond-to(medium) {
-      width: 100%;
     }
   }
 
@@ -290,6 +293,7 @@ body {
     margin: 5em auto 0;
     padding: 0 $spacing-md;
     transform: translateY(50%);
+    max-width: map-get($breakpoints, "large");
 
     @include respond-to(medium) {
       border-radius: 0;
@@ -331,7 +335,7 @@ body {
 }
 
 .footer {
-  background-color: $color-headings;
+  background-color: $color-cards-bg;
   color: $color-text_darken;
   padding-bottom: $spacing-lg;
   padding-top: $spacing-xlg;
