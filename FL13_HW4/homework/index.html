@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="wrapper">
@@ -38,7 +38,7 @@
 
         <section class="page">
           <article class="article-card">
-            <div class="article-card_cover"></div>
+            <img class="article-card_cover" src="./img/blog-image1.jpg"></img>
 
             <header>
               <h2 class="article-card_heading">
@@ -47,10 +47,15 @@
             </header>
 
             <section class="article-card_info">
-              <div class="article-card_author">Len Lopez</div>
+              <div class="article-card_author">
+                <img src="./img/author-image1.jpg" alt="author image" class="article-card_author-avatar">
+              <p class="article-card_author-name">Len Lopez</p>  
+              </div>
               <div class="article-card_date">July 22, 2017</div>
               <div class="article-card_comments">
-                <span class="comments-count">35</span> Comments
+                <span class="comments-count"> 
+                  <i class="fa fa-comment-o"></i>
+                  35</span>&nbsp;Comments
               </div>
             </section>
 
