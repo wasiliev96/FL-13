@@ -1,5 +1,67 @@
 // Write your styles here
 // mixins & main rules
+// spacing
+$spacing-xs: 0.6em;
+$spacing-sm: 1em;
+$spacing-md: 2em;
+$spacing-lg: 3em;
+$spacing-xlg: 5em;
+
+// font-size
+$font-base: 21px;
+$fontsize-xs: 0.8rem;
+$fontsize-sm: 1.2rem;
+$fontsize-md: 1.6rem;
+$fontsize-lg: 2rem;
+$fontsize-xlg: 2.8rem;
+$fontsize-xxlg: 6rem;
+
+// font-family
+$font-base: "Hind", sans-serif;
+$font-headings: "Source Sans Pro", sans-serif;
+
+$breakpoints: (
+  xsmall: 400px,
+  small: 600px,
+  medium: 996px,
+  large: 1200px,
+  xlarge: 1600px,
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    +"Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// @include respond-to(small) {
+//   color: tomato;
+// }
+
+@mixin clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-mark;
+  }
+
+  &:active {
+    background-color: $color-headings;
+  }
+}
+
+// main code
 html,
 body {
   margin: 0;
@@ -18,10 +80,11 @@ a {
 body {
   font-family: $font-base;
   font-size: $font-base;
+  background-color: $color-bg;
 }
 
 .header {
-  background-image: url(../img/m-h-day.jpg);
+  background-image: $hero-bg-image;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,7 +97,7 @@ body {
   }
 
   &_heading {
-    color: $color-dark_lighten;
+    color: $color-headings;
     font-family: $font-headings;
     font-size: $fontsize-xxlg;
     font-weight: bold;
@@ -42,18 +105,18 @@ body {
     margin: $spacing-xs 0 $spacing-xs;
     max-width: 50%;
 
-    @include respond-to(xlarge) {
-      font-size: 6vw;
-    }
+    // @include respond-to(xlarge) {
+    //   font-size: 6vw;
+    // }
 
     @include respond-to(medium) {
-      font-size: $fontsize-xlg;
+      // font-size: $fontsize-xlg;
       max-width: 100%;
     }
   }
 
   &_text {
-    color: $color-dark_lighten;
+    color: $color-headings;
     font-family: Hind;
     font-size: $fontsize-sm;
     margin-bottom: $spacing-xlg;
@@ -70,9 +133,9 @@ body {
   }
 
   &_button {
-    background-color: $color-accent_secondary;
+    background-color: $color-button-bg;
     border: none;
-    color: $color-light;
+    color: $color-text;
     font-family: $font-base;
     font-size: $fontsize-sm;
     font-weight: bold;
@@ -99,7 +162,7 @@ body {
 .landing-logo {
   align-items: center;
   display: flex;
-  font-family: 'Hind', sans-serif;
+  font-family: "Hind", sans-serif;
   font-weight: bold;
   justify-content: space-between;
   line-height: 1.2;
@@ -114,7 +177,7 @@ body {
 
   p {
     align-items: center;
-    color: $color-dark_lighten;
+    color: $color-headings;
     display: flex;
     flex-direction: column;
     font-size: $fontsize-lg;
@@ -126,12 +189,12 @@ body {
 }
 
 .login {
-  color: $color-light;
-  font-family: 'Source Sans Pro';
+  color: $color-text;
+  font-family: "Source Sans Pro";
   font-size: $fontsize-md;
 }
 
-.header-wrap>div:last-child {
+.header-wrap > div:last-child {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -148,15 +211,15 @@ body {
   }
 
   &_text {
-    color: $color-dark_lighten;
-    font-family: 'Source Sans Pro';
+    color: $color-headings;
+    font-family: "Source Sans Pro";
     font-size: $fontsize-xlg;
     font-weight: 600;
     text-align: center;
   }
 
   &_card {
-    background-color: $color-dark;
+    background-color: $color-cards-bg;
     border-radius: $spacing-xs;
     display: flex;
     justify-content: space-around;
@@ -177,7 +240,7 @@ body {
 
     &_right_container {
       align-items: center;
-      color: $color-light;
+      color: $color-text;
       display: flex;
       flex-direction: column;
       padding-bottom: $spacing-md;
@@ -191,7 +254,7 @@ body {
     }
 
     &_text {
-      color: $color-light_darken;
+      color: $color-text_darken;
       font-size: $fontsize-sm;
       font-weight: 400;
       margin-bottom: $spacing-xs;
@@ -205,7 +268,7 @@ body {
     }
   }
 
-  &>div {
+  & > div {
     width: 60%;
 
     @include respond-to(medium) {
@@ -214,13 +277,13 @@ body {
   }
 
   &_link {
-    color: $color-light_darken;
+    color: $color-text_darken;
     font-size: $fontsize-sm;
   }
 
   &_banner {
     align-items: center;
-    background: linear-gradient(to right, $color-accent_secondary, $color-mark);
+    background: linear-gradient(to right, $color-button-bg, $color-mark);
     border-radius: $spacing-xs;
     display: flex;
     justify-content: space-around;
@@ -239,34 +302,37 @@ body {
     &_text_wrap {
       padding: 0em $spacing-md $spacing-sm $spacing-md;
 
-      @include respond-to(medium) {
-        padding: 0;
+      @include respond-to(large) {
+        padding: 0 1em;
         text-align: center;
       }
     }
 
     &_heading {
-      color: $color-dark_lighten;
-      font-family: 'Source Sans Pro';
+      color: $color-headings;
+      font-family: "Source Sans Pro";
       font-size: $fontsize-lg;
       font-weight: bold;
       margin-bottom: $spacing-sm;
     }
 
     &_text {
-      color: $color-light_darken;
+      color: $color-text_darken;
       font-size: $fontsize-sm;
     }
 
     &_button {
-      @extend .header_button
+      @extend .header_button;
+      @include respond-to(large) {
+        padding: 0.6em 1.5em;
+      }
     }
   }
 }
 
 .footer {
-  background-color: $color-dark_lighten;
-  color: $color-light_darken;
+  background-color: $color-headings;
+  color: $color-text_darken;
   padding-bottom: $spacing-lg;
   padding-top: $spacing-xlg;
   width: 100%;
@@ -277,7 +343,7 @@ body {
 
   .landing-logo {
     p {
-      color: $color-light_darken;
+      color: $color-text_darken;
     }
 
     img {
@@ -286,7 +352,7 @@ body {
   }
 
   &_text {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     max-width: 450px;
   }
 }
@@ -301,16 +367,16 @@ body {
     padding: 2em;
   }
 
-  &>div,
-  &>p,
-  &>span {
+  & > div,
+  & > p,
+  & > span {
     align-items: center;
     display: flex;
     justify-content: center;
   }
 }
 
-// mark?..
+// mark...
 .header_heading,
 .section_text,
 .section_banner_heading {
@@ -320,17 +386,28 @@ body {
   &:before {
     position: absolute;
     top: 50%;
-    content: '';
-    background-color: $color-mark_lighten;
+    content: "";
+    background-color: $color-mark;
     z-index: -1;
   }
 }
-
+.header_heading {
+  max-width: 660px;
+  @include respond-to(medium) {
+    font-size: $fontsize-xlg;
+    max-width: 400px;
+  }
+  @include respond-to(small) {
+  }
+  @include respond-to(xsmall) {
+    max-width: 200px;
+  }
+}
 .header_heading:before {
   left: 0;
   width: 4.2em;
-  transform: translateY(-30%);
-  height: .8em;
+  transform: translateY(10%);
+  height: 0.8em;
 }
 
 .section_text {

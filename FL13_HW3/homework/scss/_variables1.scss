@@ -1,72 +1,25 @@
-// colors 
-$color-dark_lighten: #2c2f3c;
-$color-dark:#21232e;
-$color-light: #ffffff;
-$color-light_darken:#c0c3ce;
-$color-accent:#14a0c7;
-$color-accent_secondary:#699900;
-$color-mark:#2e5cd5;
-$color-mark_lighten:#14a0c7;
+// // colors
+// $color-dark_lighten: #2c2f3c;
+// $color-dark: #21232e;
+// $color-light: #ffffff;
+// $color-light_darken: #c0c3ce;
+// $color-accent: #14a0c7;
+// $color-accent_secondary: #699900;
+// $color-mark: #2e5cd5;
+// $color-mark_lighten: #14a0c7;
 
-// spacing 
-$spacing-xs: .6em;
-$spacing-sm: 1em;
-$spacing-md: 2em;
-$spacing-lg: 3em;
-$spacing-xlg: 5em;
+// $hero-bg-image: url(../img/m-h-day.jpg);
 
-// font-size 
-$font-base: 21px;
-$fontsize-xs: 0.8rem;
-$fontsize-sm: 1.2rem;
-$fontsize-md: 1.6rem;
-$fontsize-lg: 2rem;
-$fontsize-xlg: 2.8rem;
-$fontsize-xxlg: 6rem;
+// colors
+$color-bg: #ffffff;
+$color-headings: #21232e;
+$color-cards-bg: #2c2f3c;
+$color-text: #ffffff;
 
-// font-family
-$font-base: 'Hind',
-sans-serif;
-$font-headings: 'Source Sans Pro',
-sans-serif;
+$color-text_darken: #c0c3ce;
+$color-accent: #14a0c7;
+$color-button-bg: #699900;
+$color-mark: #2e5cd5;
+// $color-gradient-from:
 
-$breakpoints:(xsmall: 400px,
-  small:600px,
-  medium: 1000px,
-  large: 1200px,
-  xlarge: 1600px);
-
-@mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: #{map-get($breakpoints, $breakpoint)}) {
-      @content;
-    }
-  }
-
-  @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
-    +"Please make sure it is defined in `$breakpoints` map.";
-  }
-}
-
-// @include respond-to(small) {
-//   color: tomato;
-// }
-
-@mixin clickable {
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: $color-mark;
-  }
-
-  &:active {
-    background-color: $color-dark_lighten;
-  }
-}
+$hero-bg-image: url(../img/m-h-day.jpg);
