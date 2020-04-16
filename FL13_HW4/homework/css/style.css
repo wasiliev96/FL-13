@@ -29,6 +29,10 @@ a {
   cursor: pointer;
   color: var(--color-text);
 }
+button:hover,
+a:hover {
+  color: var(--color-accent);
+}
 h2 {
   font-size: var(--font-h2);
 }
@@ -67,8 +71,10 @@ button {
 }
 .main-navbar_link {
   display: inline-block;
-  padding: 20px 1.5em;
   font-size: var(--font-navigation);
+}
+.main-navbar_link a {
+  padding: 20px 1.5em;
 }
 
 .hero {
