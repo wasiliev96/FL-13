@@ -64,6 +64,7 @@ button {
   font-size: var(--font-logo);
   font-weight: bold;
   margin-left: 1.7em;
+  margin: 1em;
 }
 .main-navbar {
   display: flex;
