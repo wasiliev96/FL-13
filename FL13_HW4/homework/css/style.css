@@ -30,7 +30,9 @@ a {
   color: var(--color-text);
 }
 button:hover,
-a:hover {
+a:hover,
+button:focus,
+a:focus {
   color: var(--color-accent);
 }
 h2 {
