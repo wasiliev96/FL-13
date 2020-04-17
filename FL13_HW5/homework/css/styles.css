@@ -9,6 +9,10 @@
   --text--color: #484848;
   --link: #fff;
   --link--hover: #b8b8b8;
+  
+  --mq-phone: min-width:480px;
+  --mq-tablet: min-width: 768px;
+  --mq-desktop: min-width: 1400px;
 }
 
 body {
