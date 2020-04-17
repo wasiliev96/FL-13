@@ -17,7 +17,7 @@ $fontsize-xlg: 2.8rem;
 $fontsize-xxlg: 6rem;
 
 // font-family
-$font-base: "Hind", sans-serif;
+$font-family-base: "Hind", sans-serif;
 $font-headings: "Source Sans Pro", sans-serif;
 
 $breakpoints: (
@@ -78,7 +78,7 @@ a {
 }
 
 body {
-  font-family: $font-base;
+  font-family: $font-family-base;
   font-size: $font-base;
   background-color: $color-bg;
 }
@@ -136,7 +136,7 @@ body {
     background-color: $color-button-bg;
     border: none;
     color: $color-text;
-    font-family: $font-base;
+    font-family: $font-family-base;
     font-size: $fontsize-sm;
     font-weight: bold;
     padding: $spacing-xs $spacing-lg;
