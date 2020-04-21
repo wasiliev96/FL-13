@@ -16,29 +16,38 @@ body {
     box-sizing       : border-box;
     font-family      : Roboto, serif;
     font-size        : 16px;
+    line-height      : 1.5;
     margin           : 0;
-    padding          : 0 2rem;
 }
 
-.post-1 {
+.article-1 {
     background : #F3D250;
 }
 
-.post-2 {
+.article-2 {
     background : #8D8741;
 }
 
-.post-3 {
+.article-3 {
     background : #659DBD;
 }
 
-.post-4 {
+.article-4 {
     background : #DAAD86;
 }
 
 /* Your styles go here */
 h1, h2 {
-    font-weight : lighter;
+    font-weight : 200;
+    margin      : 1rem 0;
+}
+
+h2 {
+    font-size : 2.5rem;
+}
+
+p {
+    color : var(--text--color);
 }
 
 a {
@@ -47,7 +56,7 @@ a {
     text-decoration : none;
 }
 
-a:not(.logo):hover {
+nav a:hover {
     background-color : var(--link--hover);
 }
 
@@ -87,6 +96,39 @@ header nav {
     height           : 2px;
     margin-top       : 5px;
     width            : 100%;
+}
+
+.article {
+    padding-bottom : 2rem;
+}
+
+.article__img {
+    max-width  : 100%;
+    object-fit : cover;
+}
+
+.article__body {
+    align-items    : center;
+    display        : flex;
+    flex-direction : column;
+    padding        : 0 2em 1em;
+}
+
+.article__time {
+    font-size   : 2.5rem;
+    font-weight : 200;
+}
+
+.article__time__month {
+    font-size : 0.8em;
+}
+
+.article__link {
+    border-bottom  : 1px solid var(--text--color);
+    color          : var(--text--color);
+    display        : block;
+    padding        : 1em .5em .5em 2em;
+    text-transform : uppercase;
 }
 
 /* mobile-first queries */
