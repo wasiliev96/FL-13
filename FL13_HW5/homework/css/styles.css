@@ -16,6 +16,7 @@ body {
     box-sizing       : border-box;
     font-family      : Roboto, serif;
     font-size        : 16px;
+    font-weight      : 200;
     line-height      : 1.5;
     margin           : 0;
 }
@@ -42,18 +43,27 @@ h1, h2 {
     margin      : 1rem 0;
 }
 
+h1 {
+    font-size : 2.5rem;
+}
+
 h2 {
     font-size : 2.5rem;
 }
 
 p {
-    color : var(--text--color);
+    color       : var(--text--color);
+    font-weight : 400;
 }
 
 a {
     color           : var(--link);
     cursor          : pointer;
     text-decoration : none;
+}
+
+a:not(:last-child) {
+    font-weight : 400;
 }
 
 nav a:hover {
@@ -99,7 +109,7 @@ header nav {
 }
 
 .article {
-    padding : 1.5rem;
+    padding : 1.5rem 1.5rem 2rem;
 }
 
 .article__img {
@@ -120,7 +130,6 @@ header nav {
     align-items     : baseline;
     display         : flex;
     font-size       : 2.5rem;
-    font-weight     : 200;
     justify-content : center;
 }
 
@@ -129,16 +138,35 @@ header nav {
 }
 
 .article__link {
-    border-bottom  : 1px solid var(--text--color);
+    border         : 1px solid var(--text--color);
     color          : var(--text--color);
-    display        : block;
-    padding        : 1em .5em 0 2em;
+    display        : inline-block;
+    margin-top     : 2em;
+    padding        : .5em 1em;
     text-transform : uppercase;
 }
 
 aside .article {
     background-color : #FFFFFF;
     margin           : 2rem 0;
+}
+
+.footer {
+    align-items      : center;
+    background-color : var(--bg-color--medium);
+    color            : var(--link);
+    display          : flex;
+    flex-direction   : column;
+    padding          : 2rem;
+    text-align       : center;
+}
+
+.footer__copyright, .footer__authors {
+    font-size : .9rem;
+}
+
+.footer__copyright {
+    margin-bottom : 1em;
 }
 
 /* mobile-first queries */
