@@ -161,24 +161,33 @@ header nav {
     text-transform : uppercase;
 }
 
-.article:nth-child(5n) {
-    position : relative;
+.article:nth-child(5) {
+    min-height : 400px;
+    position   : relative;
 }
 
-.article:nth-child(5n) h2,
-.article:nth-child(5n) p,
-.article:nth-child(5n) a,
-.article:nth-child(5n) time {
+.article:nth-child(5) {
+    align-items     : center;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+}
+
+.article:nth-child(5) h2,
+.article:nth-child(5) p,
+.article:nth-child(5) a,
+.article:nth-child(5) time {
     color : var(--link);
 }
 
-.article:nth-child(5n) .article__img {
+.article:nth-child(5) .article__img {
     height    : 100%;
     left      : 0;
     margin    : 0;
     max-width : 100%;
     position  : absolute;
     top       : 0;
+    width     : 100%;
     z-index   : -1;
 }
 
@@ -243,4 +252,5 @@ aside .article {
 }
 
 @media (min-width : 1400px) {
+
 }
