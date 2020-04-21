@@ -3,52 +3,98 @@
  * Feel free to add new colors if you need it
  */
 
-:root
-{
-    /*--bg-color--dark: #0B192F;*/
-    /*--bg-color--medium: #162B4D;*/
-    /*--text--color: #484848;*/
-    /*--link: #FFFFFF;*/
-    /*--link--hover: #B8B8B8;*/
+:root {
+    --link             : #FFFFFF;
+    --text--color      : #484848;
+    --link--hover      : #B8B8B8;
+    --bg-color--dark   : #0B192F;
+    --bg-color--medium : #162B4D;
 }
 
-body
-{
-    font-family: Roboto, serif;
+body {
+    background-color : var(--bg-color--dark);
+    box-sizing       : border-box;
+    font-family      : Roboto, serif;
+    font-size        : 16px;
+    margin           : 0;
+    padding          : 0 2rem;
 }
 
-.post-1
-{
-    background: #F3D250;
+.post-1 {
+    background : #F3D250;
 }
 
-.post-2
-{
-    background: #8D8741;
+.post-2 {
+    background : #8D8741;
 }
 
-.post-3
-{
-    background: #659DBD;
+.post-3 {
+    background : #659DBD;
 }
 
-.post-4
-{
-    background: #DAAD86;
+.post-4 {
+    background : #DAAD86;
 }
 
 /* Your styles go here */
+h1, h2 {
+    font-weight : lighter;
+}
 
+a {
+    color           : var(--link);
+    cursor          : pointer;
+    text-decoration : none;
+}
+
+a:not(.logo):hover {
+    background-color : var(--link--hover);
+}
+
+ul {
+    list-style-type : none;
+}
+
+header {
+    align-items      : center;
+    background-color : var(--bg-color--medium);
+    display          : flex;
+    flex-direction   : column;
+    padding          : 2rem 2rem 1rem;
+}
+
+header .logo {
+    color : var(--link);
+}
+
+header .logo span {
+    color : #800080;
+}
+
+header nav {
+    display : none;
+}
+
+.hamburger {
+    display       : block;
+    margin-bottom : 3rem;
+    width         : 20px;
+}
+
+.hamburger span {
+    background-color : #FFFFFF;
+    display          : block;
+    height           : 2px;
+    margin-top       : 5px;
+    width            : 100%;
+}
 
 /* mobile-first queries */
-@media (min-width: 480px)
-{
+@media (min-width : 480px) {
 }
 
-@media (min-width: 768px)
-{
+@media (min-width : 768px) {
 }
 
-@media (min-width: 1400px)
-{
+@media (min-width : 1400px) {
 }
