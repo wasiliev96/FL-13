@@ -99,24 +99,29 @@ header nav {
 }
 
 .article {
-    padding-bottom : 2rem;
+    padding : 1.5rem;
 }
 
 .article__img {
-    max-width  : 100%;
+    margin     : -1.5rem -1.5rem 1rem;
+    max-width  : calc(100% + 3rem);
     object-fit : cover;
 }
 
-.article__body {
-    align-items    : center;
-    display        : flex;
-    flex-direction : column;
-    padding        : 0 2em 1em;
+.article__heading, .article__text {
+    text-align : left;
+}
+
+.article__text {
+    margin-bottom : 0;
 }
 
 .article__time {
-    font-size   : 2.5rem;
-    font-weight : 200;
+    align-items     : baseline;
+    display         : flex;
+    font-size       : 2.5rem;
+    font-weight     : 200;
+    justify-content : center;
 }
 
 .article__time__month {
@@ -127,8 +132,13 @@ header nav {
     border-bottom  : 1px solid var(--text--color);
     color          : var(--text--color);
     display        : block;
-    padding        : 1em .5em .5em 2em;
+    padding        : 1em .5em 0 2em;
     text-transform : uppercase;
+}
+
+aside .article {
+    background-color : #FFFFFF;
+    margin           : 2rem 0;
 }
 
 /* mobile-first queries */
