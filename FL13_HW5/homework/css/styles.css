@@ -21,20 +21,28 @@ body {
     margin           : 0;
 }
 
-.article-1 {
+main {
+    overflow-y : hidden;
+}
+
+main .article:nth-child(1n) {
     background : #F3D250;
 }
 
-.article-2 {
+main .article:nth-child(2n) {
     background : #8D8741;
 }
 
-.article-3 {
+main .article:nth-child(3n) {
     background : #659DBD;
 }
 
-.article-4 {
+main .article:nth-child(4n) {
     background : #DAAD86;
+}
+
+main .article:nth-child(5n) {
+    background-color : transparent;
 }
 
 /* Your styles go here */
@@ -109,13 +117,12 @@ header nav {
 }
 
 .article {
-    padding : 1.5rem 1.5rem 2rem;
+    padding : 1.5em;
 }
 
 .article__img {
-    margin     : -1.5rem -1.5rem 1rem;
-    max-width  : calc(100% + 3rem);
-    object-fit : cover;
+    margin    : -1.5rem -1.5rem 1rem;
+    max-width : calc(100% + 3rem);
 }
 
 .article__heading, .article__text {
@@ -141,9 +148,31 @@ header nav {
     border         : 1px solid var(--text--color);
     color          : var(--text--color);
     display        : inline-block;
-    margin-top     : 2em;
+    margin         : 1em 0 0.5em;
     padding        : .5em 1em;
     text-transform : uppercase;
+}
+
+.article:nth-child(5n) {
+    position : relative;
+}
+
+.article:nth-child(5n) h2,
+.article:nth-child(5n) p,
+.article:nth-child(5n) a,
+.article:nth-child(5n) time {
+    color : var(--link);
+}
+
+.article:nth-child(5n) .article__img {
+    height     : 100%;
+    left       : 0;
+    margin     : 0;
+    max-width  : 100%;
+    object-fit : cover;
+    position   : absolute;
+    top        : 0;
+    z-index    : -1;
 }
 
 aside .article {
