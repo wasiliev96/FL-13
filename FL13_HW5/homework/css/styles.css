@@ -84,10 +84,14 @@ h1, h2 {
 }
 
 h1 {
-    font-size : 2.5rem;
+    font-size : 3.5rem;
 }
 
 h2 {
+    font-size : 3.5rem;
+}
+
+aside h2 {
     font-size : 2.5rem;
 }
 
@@ -100,15 +104,19 @@ time {
     font-weight : 200;
 }
 
+footer a {
+    color : #FFFFFF;
+}
+
 a {
-    color           : #FFFFFF;
     cursor          : pointer;
     position        : relative;
     text-decoration : none;
 }
 
 aside a {
-    transition : border-color .3s ease;
+    font-weight : 400;
+    transition  : border-color .3s ease;
 }
 
 aside a:hover {
@@ -183,6 +191,7 @@ header nav ul {
 
 header nav a {
     display     : block;
+    font-size   : 1.2rem;
     line-height : 100px;
     padding     : 0 2em;
 }
@@ -218,6 +227,7 @@ header nav a {
 }
 
 .article__heading, .article__text {
+    color      : #484848;
     text-align : left;
 }
 
@@ -227,6 +237,7 @@ header nav a {
 
 .article__time {
     font-size : 2.5rem;
+    margin    : 0 auto;
 }
 
 .article__time__month {
@@ -234,7 +245,7 @@ header nav a {
 }
 
 .article__link {
-    border         : 1px solid #484848;
+    border         : 2px solid #484848;
     color          : #484848;
     display        : inline-block;
     margin         : 1em 0 0.5em;
@@ -290,7 +301,7 @@ aside .article {
 }
 
 .footer__copyright, .footer__authors {
-    font-size : .9rem;
+    font-size : 1rem;
 }
 
 .footer__copyright {
