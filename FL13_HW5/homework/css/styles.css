@@ -134,6 +134,10 @@ img {
     object-fit : cover;
 }
 
+nav a {
+    color : #FFFFFF;
+}
+
 nav a:after {
     background-color : #B8B8B8;
     content          : '';
