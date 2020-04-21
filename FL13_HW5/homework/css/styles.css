@@ -3,33 +3,52 @@
  * Feel free to add new colors if you need it
  */
 
-:root {
-  --bg-color--dark: #0b192f;
-  --bg-color--medium: #162b4d;
-  --text--color: #484848;
-  --link: #fff;
-  --link--hover: #b8b8b8;
-  
-  --mq-phone: min-width:480px;
-  --mq-tablet: min-width: 768px;
-  --mq-desktop: min-width: 1400px;
+:root
+{
+    /*--bg-color--dark: #0B192F;*/
+    /*--bg-color--medium: #162B4D;*/
+    /*--text--color: #484848;*/
+    /*--link: #FFFFFF;*/
+    /*--link--hover: #B8B8B8;*/
 }
 
-body {
-  font-family: roboto;
+body
+{
+    font-family: Roboto, serif;
 }
 
-.post-1 {
-	background: #F3D250;
+.post-1
+{
+    background: #F3D250;
 }
-.post-2 {
-	background: #8D8741;
+
+.post-2
+{
+    background: #8D8741;
 }
-.post-3 {
-	background: #659DBD;
+
+.post-3
+{
+    background: #659DBD;
 }
-.post-4 {
-	background: #DAAD86;
+
+.post-4
+{
+    background: #DAAD86;
 }
 
 /* Your styles go here */
+
+
+/* mobile-first queries */
+@media (min-width: 480px)
+{
+}
+
+@media (min-width: 768px)
+{
+}
+
+@media (min-width: 1400px)
+{
+}
