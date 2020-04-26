@@ -16,10 +16,9 @@ let game = {
   },
   setRandomNumber () {
     this.guessNumber = Math.floor(Math.random() * this.currentRange);
-    console.log(this.guessNumber);
+    console.log('game guess number: ' + this.guessNumber); // for debug
   },
   askUserNumber () {
-    console.log('usernumber');
     return prompt(`
 Choose a roulette pocket number from 0 to ${ this.currentRange }\n
 Attempts left: ${ this.attempts }
@@ -40,7 +39,6 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
     while (this.attempts > 0) {
       this.setRandomNumber();
       let userChoise = parseInt(this.askUserNumber());
-      console.log('guessed:' + this.guessNumber);
       if (userChoise === game.guessNumber) {
         this.levelUp();
         return true;
@@ -61,7 +59,6 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
   },
   play (choice) {
     let userchoice = choice;
-    // this.guessNumber = 3;
     while (userchoice) {
       let results = this.runQuizz();
       if (results) {
