@@ -68,6 +68,10 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
         userchoice = confirm(
           `Congratulation, you won!   Your prize is: ${ game.wallet }$. Do you want to continue?`
         );
+        if (!userchoice) {
+          alert(
+            `Thank you for your participation. Your prize is: ${ game.wallet }$`);
+        }
       } else {
         userchoice = confirm(
           `Thank you for your participation. Your prize is: ${ game.wallet }$. Do you want to continue?`
