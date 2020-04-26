@@ -33,7 +33,8 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
     this.currentQuizPrice = this.levelMaxPrize;
     this.attempts = USER_ATTEMPTS_MAX;
     this.currentRange += RANDOM_RANGE_STEP;
-    console.log('win');
+    game.currentRange += RANDOM_RANGE_STEP;
+    game.attempts = USER_ATTEMPTS_MAX;
   },
   runQuizz () {
     while (this.attempts > 0) {
@@ -59,7 +60,6 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
     this.currentQuizPrice = PRIZE_BASE;
   },
   play (choice) {
-    console.log('play');
     let userchoice = choice;
     // this.guessNumber = 3;
     while (userchoice) {
@@ -91,9 +91,6 @@ function main () {
   } else {
     while (isRun) {
       isRun = game.play(choice);
-      console.log('currentQuizPrice: ' + game.currentQuizPrice);
-      game.currentRange += RANDOM_RANGE_STEP;
-      game.attempts = USER_ATTEMPTS_MAX;
     }
   }
 
