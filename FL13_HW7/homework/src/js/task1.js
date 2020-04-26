@@ -1,6 +1,7 @@
 // Your code goes here
 const USERNAME_MIN_LENGTH = 4;
-const EVENING_POINT_HOUR = 20;
+const NIGHT_START = 20;
+const NIGHT_END = 8;
 // create user credentials database
 let credentials = {
   'User': 'UserPass',
@@ -10,7 +11,7 @@ let credentials = {
 function greetings (username) {
   // show greetings depend on username and time
   let currentTime = new Date().getHours();
-  alert(`Good ${ currentTime < EVENING_POINT_HOUR
+  alert(`Good ${ currentTime < NIGHT_START && currentTime > NIGHT_END
     ? 'day'
     : 'evening' }, dear ${ username }`);
 }
