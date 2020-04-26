@@ -1,1 +1,90 @@
 // Your code goes here
+const RANDOM_RANGE_STEP = 5;
+const PRIZE_BASE = 100;
+const PRIZE_MULTIPLIER = 2;
+const USER_ATTEMPTS_MAX = 3;
+
+let game = {
+  currentRange: RANDOM_RANGE_STEP,
+  guessNumber: 1,
+  attempts: USER_ATTEMPTS_MAX,
+  wallet: 0,
+  currentQuizPrice: PRIZE_BASE,
+  updateCurrentQuizPrice () {
+    this.currentQuizPrice /= PRIZE_MULTIPLIER;
+  },
+  setRandomNumber () {
+    this.guessNumber = Math.floor(Math.random() * this.currentRange);
+  },
+  askUserNumber () {
+    console.log('usernumber');
+    return prompt(`
+Choose a roulette pocket number from 0 to ${ this.currentRange }\n
+Attempts left: ${ this.attempts }
+Total prize: ${ this.wallet }$
+Possible prize on current attempt: ${ this.currentQuizPrice }$
+`);
+  },
+  runQuizz () {
+    while (this.attempts > 0) {
+      let userChoise = parseInt(this.askUserNumber());
+      console.log('guessed:' + this.guessNumber);
+      if (userChoise === game.guessNumber) {
+        this.wallet += this.currentQuizPrice;
+        this.currentQuizPrice *= PRIZE_MULTIPLIER;
+        console.log('win');
+        return true;
+      } else {
+        this.attempts--;
+        this.updateCurrentQuizPrice();
+      }
+    }
+    return false;
+  },
+  reset () {
+    this.currentRange = RANDOM_RANGE_STEP;
+    this.guessNumber = 1;
+    this.attempts = USER_ATTEMPTS_MAX;
+    this.wallet = 0;
+    this.currentQuizPrice = PRIZE_BASE;
+  },
+  play (choice) {
+    console.log('play');
+    let userchoice = choice;
+    this.setRandomNumber();
+    this.guessNumber = 3;
+    while (userchoice) {
+      let results = this.runQuizz();
+      if (results) {
+        userchoice = confirm(
+          `Congratulation, you won!   Your prize is: ${ game.wallet }$. Do you want to continue?`
+        );
+      } else {
+        userchoice = confirm(
+          `Thank you for your participation. Your prize is: ${ game.wallet }$. Do you want to continue?`
+        );
+        this.reset();
+      }
+      // return userchoice;
+    }
+    return userchoice;
+  }
+};
+
+function main () {
+  let isRun = true;
+  let choice = confirm('Do you want to play a game?');
+  if (!choice) {
+    alert('You did not become a billionaire, but can');
+  } else {
+    while (isRun) {
+      isRun = game.play(choice);
+      console.log('currentQuizPrice: ' + game.currentQuizPrice);
+      game.currentRange += RANDOM_RANGE_STEP;
+      game.attempts = USER_ATTEMPTS_MAX;
+    }
+  }
+
+}
+
+main();
