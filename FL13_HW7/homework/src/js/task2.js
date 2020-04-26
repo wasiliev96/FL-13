@@ -9,12 +9,14 @@ let game = {
   guessNumber: 1,
   attempts: USER_ATTEMPTS_MAX,
   wallet: 0,
+  levelMaxPrize: PRIZE_BASE,
   currentQuizPrice: PRIZE_BASE,
   updateCurrentQuizPrice () {
     this.currentQuizPrice /= PRIZE_MULTIPLIER;
   },
   setRandomNumber () {
     this.guessNumber = Math.floor(Math.random() * this.currentRange);
+    console.log(this.guessNumber);
   },
   askUserNumber () {
     console.log('usernumber');
@@ -25,17 +27,25 @@ Total prize: ${ this.wallet }$
 Possible prize on current attempt: ${ this.currentQuizPrice }$
 `);
   },
+  levelUp () {
+    this.wallet += this.currentQuizPrice;
+    this.levelMaxPrize *= PRIZE_MULTIPLIER;
+    this.currentQuizPrice = this.levelMaxPrize;
+    this.attempts = USER_ATTEMPTS_MAX;
+    this.currentRange *= PRIZE_MULTIPLIER;
+    console.log('win');
+  },
   runQuizz () {
     while (this.attempts > 0) {
+      this.setRandomNumber();
       let userChoise = parseInt(this.askUserNumber());
       console.log('guessed:' + this.guessNumber);
       if (userChoise === game.guessNumber) {
-        this.wallet += this.currentQuizPrice;
-        this.currentQuizPrice *= PRIZE_MULTIPLIER;
-        console.log('win');
+        this.levelUp();
         return true;
       } else {
         this.attempts--;
+        this.levelMaxPrize = PRIZE_BASE;
         this.updateCurrentQuizPrice();
       }
     }
@@ -51,8 +61,7 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
   play (choice) {
     console.log('play');
     let userchoice = choice;
-    this.setRandomNumber();
-    this.guessNumber = 3;
+    // this.guessNumber = 3;
     while (userchoice) {
       let results = this.runQuizz();
       if (results) {
@@ -65,7 +74,6 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
         );
         this.reset();
       }
-      // return userchoice;
     }
     return userchoice;
   }
