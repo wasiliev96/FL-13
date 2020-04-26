@@ -32,7 +32,7 @@ Possible prize on current attempt: ${ this.currentQuizPrice }$
     this.levelMaxPrize *= PRIZE_MULTIPLIER;
     this.currentQuizPrice = this.levelMaxPrize;
     this.attempts = USER_ATTEMPTS_MAX;
-    this.currentRange *= PRIZE_MULTIPLIER;
+    this.currentRange += PRIZE_MULTIPLIER;
     console.log('win');
   },
   runQuizz () {
