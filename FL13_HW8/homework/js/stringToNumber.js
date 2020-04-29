@@ -1,0 +1,1 @@
+let stringToNumber = (string) => parseInt(string);
