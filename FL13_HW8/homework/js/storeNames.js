@@ -1,7 +1,3 @@
-let storeNames = (...strings) => {
-  let stringsArray = [];
-  strings.forEach((string) => {
-    answer.push(string);
-  });
-  return stringsArray;
-};
+let storeNames = (...strings) => strings.map((string) => string);
+
+storeNames("a", "b"); 
