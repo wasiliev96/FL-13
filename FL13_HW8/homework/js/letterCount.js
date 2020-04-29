@@ -3,3 +3,4 @@ let letterCount = (userstring, letter) =>
     .toLowerCase()
     .split("")
     .filter((char) => char === letter.toLowerCase()).length;
+letterCount("Barry", "b");

@@ -7,3 +7,4 @@ let positiveSum = (nums) => {
       return a + b;
     });
 };
+positiveSum([0, -3, 5, 7]);
