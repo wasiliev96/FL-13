@@ -59,3 +59,14 @@ let containsValue = (arr, param) => {
 
 containsValue([2, 5, 8], 2);
 containsValue([12, 4, 6], 5);
+
+// task 6: reverse passed string. return(?) it
+let flipOver = (str) => {
+  let answer = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    answer += str[i];
+  }
+  return answer;
+};
+
+flipOver("hey world");
