@@ -70,3 +70,14 @@ let flipOver = (str) => {
 };
 
 flipOver("hey world");
+
+// task 7: create array from range
+let makeListFromRange = (range) => {
+  let list = [];
+  for (let i = range[0]; i <= range[1]; i++) {
+    list.push(i);
+  }
+  return list;
+};
+
+makeListFromRange([2, 7]);
