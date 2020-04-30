@@ -81,3 +81,18 @@ let makeListFromRange = (range) => {
 };
 
 makeListFromRange([2, 7]);
+
+// task 8: return array of objects values by passed key
+let getArrayOfKeys = (objects, key) => {
+  const answer = [];
+  executeForEach(objects, (object) => {
+    answer.push(object[key]);
+  });
+  return answer;
+};
+
+const fruits = [
+  { name: "apple", weight: 0.5 },
+  { name: "pineapple", weight: 2 },
+];
+getArrayOfKeys(fruits, "name");
