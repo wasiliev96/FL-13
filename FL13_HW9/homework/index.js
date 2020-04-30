@@ -32,3 +32,16 @@ let mapArray = (arr, handler) => {
 mapArray([2, "5", 8], function (el) {
   return el + 3;
 });
+
+// task 4: return filtered by callback array. Use func #2
+let filterArray = (arr, handler) => {
+  const answer = [];
+  executeForEach(arr, (item) => {
+    handler(item) && answer.push(item);
+  });
+  return answer;
+};
+
+filterArray([2, 5, 8], function (el) {
+  return el % 2 === 0;
+});
