@@ -1,6 +1,6 @@
 // task 1: string<=>number converter
 let convert = (...args) => {
-  let answer = [];
+  const answer = [];
   for (let i = 0; i < args.length; ++i) {
     if (typeof args[i] == "number") {
       answer.push(args[i] + "");
@@ -19,3 +19,16 @@ let executeForEach = (arr, handler) => {
   }
 };
 executeForEach([1, 2, 3, 4], (a) => a * 2);
+
+// task 3: return transformed by callback array
+let mapArray = (arr, handler) => {
+  const answer = [];
+  for (const item of arr) {
+    answer.push(handler(parseInt(item)));
+  }
+  return answer;
+};
+
+mapArray([2, "5", 8], function (el) {
+  return el + 3;
+});
