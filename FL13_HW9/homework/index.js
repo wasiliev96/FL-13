@@ -103,3 +103,19 @@ let substitute = (arr) => {
 };
 
 substitute([58, 14, 48, 12, 31, 19, 10]);
+
+// task 10: return date that was $(amount) days before passed date
+let getPastDay = (inputDate, amount) => {
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const date = inputDate.setDate(inputDate.getDate() - amount);
+  return Intl.DateTimeFormat("de-DE", options).format(date); /*?*/
+};
+
+const date = new Date(2020, 0, 2);
+getPastDay(date, 1); /*?*/ // 1, (1 Jan 2020)
+getPastDay(date, 2); /*?*/ // 31, (31 Dec 2019)
+getPastDay(date, 365); /*?*/ // 2, (2 Jan 2019)
