@@ -96,3 +96,10 @@ const fruits = [
   { name: "pineapple", weight: 2 },
 ];
 getArrayOfKeys(fruits, "name");
+
+// task 9: replace all numbers <20 and >10 with '*'. return new array. Use #3
+let substitute = (arr) => {
+  return mapArray(arr, (item) => (item > 10 && item < 20 && "*") || item);
+};
+
+substitute([58, 14, 48, 12, 31, 19, 10]);
