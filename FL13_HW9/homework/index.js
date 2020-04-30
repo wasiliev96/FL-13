@@ -45,3 +45,17 @@ let filterArray = (arr, handler) => {
 filterArray([2, 5, 8], function (el) {
   return el % 2 === 0;
 });
+
+// task 5: check if array contains passed $param value. Use func #2
+let containsValue = (arr, param) => {
+  let isContains = false;
+  executeForEach(arr, (item) => {
+    if (item === param) {
+      isContains = true;
+    }
+  });
+  return isContains;
+};
+
+containsValue([2, 5, 8], 2);
+containsValue([12, 4, 6], 5);
