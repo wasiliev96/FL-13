@@ -112,10 +112,29 @@ let getPastDay = (inputDate, amount) => {
     day: "numeric",
   };
   const date = inputDate.setDate(inputDate.getDate() - amount);
-  return Intl.DateTimeFormat("de-DE", options).format(date); /*?*/
+  return Intl.DateTimeFormat("en-US", options).format(date); /*?*/
 };
 
 const date = new Date(2020, 0, 2);
-getPastDay(date, 1); /*?*/ // 1, (1 Jan 2020)
-getPastDay(date, 2); /*?*/ // 31, (31 Dec 2019)
-getPastDay(date, 365); /*?*/ // 2, (2 Jan 2019)
+getPastDay(date, 1);
+getPastDay(date, 2);
+getPastDay(date, 365);
+
+// task 11: return formatted date
+let formatDate = (date) => {
+  let year = date.getFullYear(); /*?*/
+  let day = date.getDate(); /*?*/
+  day = day < 10 ? "0" + day : day;
+
+  let month = date.getMonth() + 1; /*?*/
+  month = month < 10 ? "0" + month : month;
+
+  let hours = date.getHours();
+  hours = hours < 10 ? "0" + hours : hours;
+  let minutes = date.getMinutes();
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  return `${year}/${month}/${day} ${hours}:${minutes}`;
+};
+
+formatDate(new Date("6/15/2019 09:15:00")); /*?*/ // "2018/06/15 09:15"
+formatDate(new Date()); /*?*/ // "2020/04/07 12:56" // gets current local time
