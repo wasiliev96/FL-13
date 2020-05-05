@@ -1,5 +1,5 @@
 // task 1: string<=>number converter
-let convert = (...args) => {
+const convert = (...args) => {
   const answer = [];
   for (let i = 0; i < args.length; ++i) {
     if (typeof args[i] === 'number') {
@@ -12,14 +12,14 @@ let convert = (...args) => {
 };
 
 // task 2: execute function to all array items
-let executeforEach = (arr, handler) => {
+const executeforEach = (arr, handler) => {
   for (let i = 0; i < arr.length; ++i) {
     handler(arr[i]);
   }
 };
 
 // task 3: return transformed by callback array
-let mapArray = (arr, handler) => {
+const mapArray = (arr, handler) => {
   const answer = [];
   for (const item of arr) {
     answer.push(handler(parseInt(item)));
@@ -28,7 +28,7 @@ let mapArray = (arr, handler) => {
 };
 
 // task 4: return filtered by callback array. Use func #2
-let filterArray = (arr, handler) => {
+const filterArray = (arr, handler) => {
   const answer = [];
   executeforEach(arr, item => {
     handler(item) && answer.push(item);
@@ -37,7 +37,7 @@ let filterArray = (arr, handler) => {
 };
 
 // task 5: check if array contains passed $param value. Use func #2
-let containsValue = (arr, param) => {
+const containsValue = (arr, param) => {
   let isContains = false;
   executeforEach(arr, item => {
     if (item === param) {
@@ -48,7 +48,7 @@ let containsValue = (arr, param) => {
 };
 
 // task 6: reverse passed string. return(?) it
-let flipOver = str => {
+const flipOver = str => {
   let answer = '';
   for (let i = str.length - 1; i >= 0; i--) {
     answer += str[i];
@@ -57,7 +57,7 @@ let flipOver = str => {
 };
 
 // task 7: create array from range
-let makeListFromRange = range => {
+const makeListFromRange = range => {
   let list = [];
   for (let i = range[0]; i <= range[1]; i++) {
     list.push(i);
@@ -66,7 +66,7 @@ let makeListFromRange = range => {
 };
 
 // task 8: return array of objects values by passed key
-let getArrayOfKeys = (objects, key) => {
+const getArrayOfKeys = (objects, key) => {
   const answer = [];
   executeforEach(objects, object => {
     answer.push(object[key]);
@@ -75,7 +75,7 @@ let getArrayOfKeys = (objects, key) => {
 };
 
 // task 9: replace all numbers <20 and >10 with '*'. return new array. Use #3
-let substitute = arr => {
+const substitute = arr => {
   const MIN = 10,
     MAX = 20;
   return mapArray(arr, function (item) {
@@ -87,28 +87,14 @@ let substitute = arr => {
 };
 
 // task 10: return date that was $(amount) days before passed date
-let getPastDay = (date, amount) => {
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Octr',
-    'Nov',
-    'Dec'
-  ];
-  let dayz = new Date(date);
-  dayz.setDate(dayz.getDate() - amount);
-  return `${dayz.getDate()} ${months[dayz.getMonth()]} ${dayz.getFullYear()}`;
+const getPastDay = (date, amount) => {
+  let answer = new Date(date);
+  answer.setDate(answer.getDate() - amount);
+  return `${ answer.getDate() }`;
 };
 
 // task 11: return formatted date
-let formatDate = date => {
+const formatDate = date => {
   const ONE_CHAR_MAX_LENGTH = 9;
   const year = date.getFullYear();
   let day = date.getDate();
@@ -121,5 +107,5 @@ let formatDate = date => {
   hours = hours <= ONE_CHAR_MAX_LENGTH ? '0' + hours : hours;
   let minutes = date.getMinutes();
   minutes = minutes <= ONE_CHAR_MAX_LENGTH ? '0' + minutes : minutes;
-  return `${year}/${month}/${day} ${hours}:${minutes}`;
+  return `${ year }/${ month }/${ day } ${ hours }:${ minutes }`;
 };
