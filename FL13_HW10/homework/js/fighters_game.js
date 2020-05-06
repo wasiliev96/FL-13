@@ -50,13 +50,17 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     const MIN_CHANCE = 0;
     const successChance = 100 - (enemy.getStrength() + enemy.getAgility());/*?*/
     const random = Math.random() * (+MAX_CHANCE - +MIN_CHANCE) + +MIN_CHANCE;/*?*/
-    random < successChance
-    ?
-    console.log(
-      `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`) &&
-    enemy.setHealth(enemy.getHealth() - getDamage())
-    :
-    console.log(`${ getName() } attack missed`);
+    if (random < successChance) {
+      enemy.setHealth(enemy.getHealth() - getDamage());
+      if (enemy.getHealth() > 0) {
+        console.log(
+          `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`);
+      } else {
+        console.log(`${ getName() } has won!`);
+      }
+    } else {
+      console.log(`${ getName() } attack missed`);
+    }
   };
 
   return {
