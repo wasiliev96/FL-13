@@ -45,8 +45,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
    * @param {object} enemy
    */
   function attack (enemy) {
-    const weights = [this.getStrength() + this.getAgility()];/*?*/
-    console.log(weights);/*?*/
+    const successChance = 100 - (enemy.getStrength() + enemy.getAgility());/*?*/
   }
 
   return {
@@ -60,5 +59,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
 }
 
 const myFighter = new Fighter();/*?*/
+const enemyFighter = new Fighter();
 console.log(myFighter.getAgility());/*?*/
-myFighter.attack();
+myFighter.attack(enemyFighter);/*?*/
