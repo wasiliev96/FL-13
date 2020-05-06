@@ -48,7 +48,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
    *
    * @returns {string} - string representation on win/loses states
    */
-  const getHistory = () => {return `Name: ${ getName() }, Wins: ${ history[0] }, Loses: ${ history[1] }`;};
+  const getHistory = () => {return `Name: '${ getName() }', Wins: ${ history[0] }, Losses: ${ history[1] }`;};
 
   /**
    *
@@ -130,6 +130,8 @@ let battle = (fighter1, fighter2) => {
   }
   fighter1.attack(fighter2);
   if (fighter2.getHealth() <= 0) {
+    fighter1.addWin();
+    fighter2.addLoss();
     console.log(`${ fighter1.getName() } wins!`);
     return;
   }
