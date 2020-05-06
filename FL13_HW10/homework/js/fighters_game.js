@@ -74,8 +74,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
         console.log(
           `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`);
       } else {
-        updateHistory(true);
-        enemy.updateHistory(false);
         console.log(`${ getName() } has won!`);
       }
     } else {
@@ -124,5 +122,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
 }
 
 let battle = (fighter1, fighter2) => {
+  let inProgress = true;
 
 };
