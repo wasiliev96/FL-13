@@ -82,8 +82,9 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
       console.log(`${ enemy.getName() } attack missed`);
     }
   };
-  const logCombatHistory = () => {
-
+  const heal = (value) => {
+    _hp += value;
+    _hp > 100 ? _hp = 100 : null;
   };
   return {
     getName: getName,
@@ -93,6 +94,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     getHealth: getHealth,
     setHealth: setHealth,
     attack: attack,
+    heal: heal,
     logCombatHistory: getHistory,
     updateHistory: updateHistory
   };
