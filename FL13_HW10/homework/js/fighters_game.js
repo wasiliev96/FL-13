@@ -73,8 +73,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
       if (enemy.getHealth() > 0) {
         console.log(
           `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`);
-      } else {
-        console.log(`${ getName() } has won!`);
       }
     } else {
       console.log(`${ enemy.getName() } attack missed`);
@@ -122,6 +120,21 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
 }
 
 let battle = (fighter1, fighter2) => {
-  let inProgress = true;
-
+  if (fighter1.getHealth() <= 0) {
+    console.log(`${ fighter1.getName() } is dead and can't fight`);
+    return;
+  }
+  if (fighter2.getHealth() <= 0) {
+    console.log(`${ fighter2.getName() } is dead and can't fight`);
+    return;
+  }
+  fighter1.attack(fighter2);
+  if (fighter2.getHealth() <= 0) {
+    console.log(`${ fighter1.getName() } wins!`);
+    return;
+  }
+  battle(fighter2, fighter1);
 };
+const fighter1 = new Fighter('Abram');
+const fighter2 = new Fighter('Backham');
+battle(fighter1, fighter2);/*?*/
