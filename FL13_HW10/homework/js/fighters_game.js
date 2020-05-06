@@ -43,7 +43,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   const getHealth = () => {
     return _hp;
   };
-  const setHealth = (value) => {_hp = value;};
   /**
    *
    * @returns {string} - string representation on win/loses states
@@ -69,7 +68,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     const successChance = 100 - (enemy.getStrength() + enemy.getAgility());/*?*/
     const random = Math.random() * (+MAX_CHANCE - +MIN_CHANCE) + +MIN_CHANCE;/*?*/
     if (random < successChance) {
-      enemy.setHealth(enemy.getHealth() - getDamage());
+      enemy.dealDamage(getDamage());
       if (enemy.getHealth() > 0) {
         console.log(
           `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`);
@@ -103,7 +102,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     getStrength: getStrength,
     getAgility: getAgility,
     getHealth: getHealth,
-    setHealth: setHealth,
     attack: attack,
     heal: heal,
     logCombatHistory: getHistory,
