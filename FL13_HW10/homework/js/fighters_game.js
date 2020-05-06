@@ -1,6 +1,10 @@
 /* Your code goes here */
 
 //@ts-check
+const DEFAULT_DAMAGE = 25;
+const DEFAULT_HP = 100;
+const DEFAULT_STRENGTH = 30;
+const DEFAULT_AGILITY = 30;
 
 /**
  *
@@ -16,8 +20,9 @@
  *   (function(): number), ...}} - returns interface for private method
  * @constructor
  */
-function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
-  strength = 30, agility = 30) {
+function Fighter (name = 'Great Unnamed', damage = DEFAULT_DAMAGE,
+  hp = DEFAULT_HP,
+  strength = DEFAULT_STRENGTH, agility = DEFAULT_AGILITY) {
   const _name = name;
   const _damage = damage;
   let _hp = hp;
@@ -48,7 +53,9 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
    *
    * @returns {string} - string representation on win/loses states
    */
-  const getHistory = () => {return `Name: '${ getName() }', Wins: ${ history[0] }, Losses: ${ history[1] }`;};
+  const getHistory = () => {
+    return `Name: '${ getName() }', Wins: ${ history[0] }, Losses: ${ history[1] }`;
+  };
 
   /**
    *
@@ -66,7 +73,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   const attack = (enemy) => {
     const MAX_CHANCE = 100;
     const MIN_CHANCE = 0;
-    const successChance = 100 - (enemy.getStrength() + enemy.getAgility());
+    const successChance = MAX_CHANCE - (enemy.getStrength() + enemy.getAgility());
     const random = Math.random() * (+MAX_CHANCE - +MIN_CHANCE) + +MIN_CHANCE;
     if (random < successChance) {
       enemy.dealDamage(getDamage());
@@ -85,7 +92,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
    */
   const heal = (value) => {
     _hp += value;
-    _hp = _hp > 100 ? 100 : _hp;
+    _hp = _hp > DEFAULT_HP ? DEFAULT_HP : _hp;
   };
 
   /**
