@@ -84,7 +84,12 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   };
   const heal = (value) => {
     _hp += value;
-    _hp > 100 ? _hp = 100 : null;
+    _hp = _hp > 100 ? 100 : _hp;
+  };
+
+  const dealDamage = (value) => {
+    _hp -= value;
+    _hp = _hp < 0 ? 0 : _hp;
   };
   return {
     getName: getName,
@@ -96,7 +101,8 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     attack: attack,
     heal: heal,
     logCombatHistory: getHistory,
-    updateHistory: updateHistory
+    updateHistory: updateHistory,
+    dealDamage: dealDamage
   };
 }
 
