@@ -59,7 +59,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
         console.log(`${ getName() } has won!`);
       }
     } else {
-      console.log(`${ getName() } attack missed`);
+      console.log(`${ enemy.getName() } attack missed`);
     }
   };
 
