@@ -12,14 +12,14 @@
  * @returns {{getDamage: (function(): number), getName: (function(): string),
  *   attack: attack, getStrength: (function(): number), getAgility:
  *   (function(): number), getHealth: (function(): number)}} - returns
- *   interfaces for private methods
+ *   interface for private method
  * @constructor
  */
 function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   strength = 30, agility = 30) {
   const _name = name;
   const _damage = damage;
-  const _hp = hp;
+  let _hp = hp;
   const _strength = strength;
   const _agility = agility;
 
@@ -38,15 +38,26 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   const getHealth = () => {
     return _hp;
   };
+  const setHealth = (value) => {_hp = value;};
 
   /**
    * attack enemy with weighted random chance depends on
    * fighter's strength+agility
    * @param {object} enemy
    */
-  function attack (enemy) {
+  const attack = (enemy) => {
+    const MAX_CHANCE = 100;
+    const MIN_CHANCE = 0;
     const successChance = 100 - (enemy.getStrength() + enemy.getAgility());/*?*/
-  }
+    const random = Math.random() * (+MAX_CHANCE - +MIN_CHANCE) + +MIN_CHANCE;/*?*/
+    random < successChance
+    ?
+    console.log(
+      `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`) &&
+    enemy.setHealth(enemy.getHealth() - getDamage())
+    :
+    console.log(`${ getName() } attack missed`);
+  };
 
   return {
     getName: getName,
@@ -54,11 +65,11 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     getStrength: getStrength,
     getAgility: getAgility,
     getHealth: getHealth,
+    setHealth: setHealth,
     attack: attack
   };
 }
 
-const myFighter = new Fighter();/*?*/
-const enemyFighter = new Fighter();
-console.log(myFighter.getAgility());/*?*/
-myFighter.attack(enemyFighter);/*?*/
+const myFighter = new Fighter('Helga');/*?*/
+const enemyFighter = new Fighter('Thor');
+myFighter.attack(enemyFighter);
