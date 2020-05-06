@@ -85,7 +85,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     getHealth: getHealth,
     setHealth: setHealth,
     attack: attack,
-    getHistory: getHistory,
+    logCombatHistory: getHistory,
     updateHistory: updateHistory
   };
 }
