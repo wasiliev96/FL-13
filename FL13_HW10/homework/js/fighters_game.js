@@ -24,7 +24,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   const _agility = agility;
   /**
    *
-   * @type {number[]} [wins, loses]
+   * @type {number[]} store fighter battles history [wins, loses]
    */
   let history = [0, 0];
 
@@ -44,15 +44,23 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     return _hp;
   };
   const setHealth = (value) => {_hp = value;};
+  /**
+   *
+   * @returns {string} - string representation on win/loses states
+   */
   const getHistory = () => {return `Name: ${ getName() }, Wins: ${ history[0] }, Loses: ${ history[1] }`;};
 
+  /**
+   *
+   * @param {boolean} result - true if win, false if loose
+   */
   const updateHistory = (result) => {
     result ? history[0]++ : history[1]++;
   };
 
   /**
    * attack enemy with weighted random chance depends on
-   * fighter's strength+agility
+   * Fighter`s  strength+agility
    * @param {object} enemy
    */
   const attack = (enemy) => {
