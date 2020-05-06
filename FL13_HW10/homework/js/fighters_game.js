@@ -96,6 +96,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     _hp -= value;
     _hp = _hp < 0 ? 0 : _hp;
   };
+
   const addWin = () => {
     updateHistory(true);
   };
@@ -119,6 +120,11 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   };
 }
 
+/**
+ * Run death match
+ * @param {object } fighter1
+ * @param {object} fighter2
+ */
 let battle = (fighter1, fighter2) => {
   if (fighter1.getHealth() <= 0) {
     console.log(`${ fighter1.getName() } is dead and can't fight`);
@@ -138,5 +144,5 @@ let battle = (fighter1, fighter2) => {
   battle(fighter2, fighter1);
 };
 const fighter1 = new Fighter('Abram');
-const fighter2 = new Fighter('Backham');
+const fighter2 = new Fighter('Boris');
 battle(fighter1, fighter2);/*?*/
