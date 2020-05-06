@@ -4,15 +4,16 @@
 
 /**
  *
- * @param {string} name -
+ * @param {string} name
  * @param {number} damage
  * @param {number} hp
  * @param {number} strength
  * @param {number} agility
- * @returns {{getDamage: (function(): number), getName: (function(): string),
- *   attack: attack, getStrength: (function(): number), getAgility:
- *   (function(): number), getHealth: (function(): number)}} - returns
- *   interface for private method
+ * @returns {{getDamage: (function(): number), addLoss: addLoss, getName:
+ *   (function(): string), attack: attack, getStrength: (function(): number),
+ *   getAgility: (function(): number), heal: heal, logCombatHistory:
+ *   (function(): string), dealDamage: dealDamage, addWin: addWin, getHealth:
+ *   (function(): number), ...}} - returns interface for private method
  * @constructor
  */
 function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
@@ -60,7 +61,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   /**
    * attack enemy with weighted random chance depends on
    * Fighter`s  strength+agility
-   * @param {object} enemy
+   * @param {object} enemy - Fighter`s object, whose to attack
    */
   const attack = (enemy) => {
     const MAX_CHANCE = 100;
@@ -81,11 +82,20 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
       console.log(`${ enemy.getName() } attack missed`);
     }
   };
+
+  /**
+   * increase _hp by value, until equals 100
+   * @param {number} value
+   */
   const heal = (value) => {
     _hp += value;
     _hp = _hp > 100 ? 100 : _hp;
   };
 
+  /**
+   * decrease _hp by value, until equals zero
+   * @param {number} value
+   */
   const dealDamage = (value) => {
     _hp -= value;
     _hp = _hp < 0 ? 0 : _hp;
@@ -96,6 +106,7 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   const addLoss = () => {
     updateHistory(false);
   };
+
   return {
     getName: getName,
     getDamage: getDamage,
@@ -112,6 +123,6 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   };
 }
 
-const myFighter = new Fighter('Helga');/*?*/
-const enemyFighter = new Fighter('Thor');
-myFighter.attack(enemyFighter);
+let battle = (fighter1, fighter2) => {
+
+};
