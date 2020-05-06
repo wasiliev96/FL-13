@@ -22,6 +22,11 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
   let _hp = hp;
   const _strength = strength;
   const _agility = agility;
+  /**
+   *
+   * @type {number[]} [wins, loses]
+   */
+  let history = [0, 0];
 
   const getName = () => {
     return _name;
@@ -39,6 +44,11 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     return _hp;
   };
   const setHealth = (value) => {_hp = value;};
+  const getHistory = () => {return `Name: ${ getName() }, Wins: ${ history[0] }, Loses: ${ history[1] }`;};
+
+  const updateHistory = (result) => {
+    result ? history[0]++ : history[1]++;
+  };
 
   /**
    * attack enemy with weighted random chance depends on
@@ -56,13 +66,17 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
         console.log(
           `${ getName() } makes ${ getDamage() } damage to ${ enemy.getName() }`);
       } else {
+        updateHistory(true);
+        enemy.updateHistory(false);
         console.log(`${ getName() } has won!`);
       }
     } else {
       console.log(`${ enemy.getName() } attack missed`);
     }
   };
+  const logCombatHistory = () => {
 
+  };
   return {
     getName: getName,
     getDamage: getDamage,
@@ -70,7 +84,9 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     getAgility: getAgility,
     getHealth: getHealth,
     setHealth: setHealth,
-    attack: attack
+    attack: attack,
+    getHistory: getHistory,
+    updateHistory: updateHistory
   };
 }
 
