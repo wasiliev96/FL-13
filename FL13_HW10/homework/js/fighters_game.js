@@ -91,6 +91,12 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     _hp -= value;
     _hp = _hp < 0 ? 0 : _hp;
   };
+  const addWin = () => {
+    updateHistory(true);
+  };
+  const addLoss = () => {
+    updateHistory(false);
+  };
   return {
     getName: getName,
     getDamage: getDamage,
@@ -102,7 +108,9 @@ function Fighter (name = 'Great Unnamed', damage = 25, hp = 100,
     heal: heal,
     logCombatHistory: getHistory,
     updateHistory: updateHistory,
-    dealDamage: dealDamage
+    dealDamage: dealDamage,
+    addWin: addWin,
+    addLoss: addLoss
   };
 }
 
