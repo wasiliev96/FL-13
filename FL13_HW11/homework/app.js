@@ -57,7 +57,7 @@ const rootNode = document.getElementById('root');
 function DOMExplorer (data, rootNode) {
   const _data = data;
   const _rootNode = rootNode || document.body;
-
+  const _parentTree = document.createElement('ul');
   const createNode = (parentNode, node) => {
     const type_file = 'li';
     const type_folder = 'ul';
@@ -81,8 +81,9 @@ function DOMExplorer (data, rootNode) {
 
   const run = () => {
     _data.forEach((item) => {
-      _rootNode.appendChild(createNode(_rootNode, item));
+      _parentTree.appendChild(createNode(_rootNode, item));
     });
+    _rootNode.appendChild(_parentTree);
   };
 
   return {
