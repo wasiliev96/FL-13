@@ -53,3 +53,42 @@ const data = [
 const rootNode = document.getElementById('root');
 
 // TODO: your code goes here
+
+function DOMExplorer (data, rootNode) {
+  const _data = data;
+  const _rootNode = rootNode || document.body;
+
+  const createNode = (parentNode, node) => {
+    const type_file = 'li';
+    const type_folder = 'ul';
+    const _name = document.createTextNode(
+      node.folder ? `Folder ${ node.title }:` : node.title);
+    const _node = document.createElement(node.folder ? type_folder : type_file);
+    const _folder = document.createElement(type_folder);
+
+    if (node.folder && node.children) {
+      node.children.map((item) => {
+        _node.appendChild(createNode(_node, item));
+      });
+      _folder.appendChild(_name);
+      _folder.appendChild(_node);
+      return _folder;
+    } else {
+      _node.appendChild(_name);
+      return _node;
+    }
+  };
+
+  const run = () => {
+    _data.forEach((item) => {
+      _rootNode.appendChild(createNode(_rootNode, item));
+    });
+  };
+
+  return {
+    run: run
+  };
+};
+
+const explorer = new DOMExplorer(data, rootNode);
+explorer.run();
