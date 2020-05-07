@@ -73,7 +73,8 @@ function Fighter (name = 'Great Unnamed', damage = DEFAULT_DAMAGE,
   const attack = (enemy) => {
     const MAX_CHANCE = 100;
     const MIN_CHANCE = 0;
-    const successChance = MAX_CHANCE - (enemy.getStrength() + enemy.getAgility());
+    const successChance = MAX_CHANCE -
+                          (enemy.getStrength() + enemy.getAgility());
     const random = Math.random() * (+MAX_CHANCE - +MIN_CHANCE) + +MIN_CHANCE;
     if (random < successChance) {
       enemy.dealDamage(getDamage());
@@ -150,6 +151,3 @@ let battle = (fighter1, fighter2) => {
   }
   battle(fighter2, fighter1);
 };
-const fighter1 = new Fighter('Abram');
-const fighter2 = new Fighter('Boris');
-battle(fighter1, fighter2);
