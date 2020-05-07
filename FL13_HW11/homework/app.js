@@ -54,10 +54,24 @@ const rootNode = document.getElementById('root');
 
 // TODO: your code goes here
 
+/**
+ *
+ * @param {array} data - Tree data
+ * @param {HTMLElement} rootNode - where to put tree
+ * @returns  {{run: run}}
+ * @constructor
+ */
 function DOMExplorer (data, rootNode) {
   const _data = data;
   const _rootNode = rootNode || document.body;
   const _parentTree = document.createElement('ul');
+
+  /**
+   *
+   * @param {HTMLElement} parentNode - where to attach current node
+   * @param {object} node data for a current node creating
+   * @returns {HTMLElement}
+   */
   const createNode = (parentNode, node) => {
     const type_file = 'li';
     const type_folder = 'ul';
@@ -79,17 +93,19 @@ function DOMExplorer (data, rootNode) {
     }
   };
 
+  /**
+   * Main method. Start generate file tree.
+   */
   const run = () => {
     _data.forEach((item) => {
       _parentTree.appendChild(createNode(_rootNode, item));
     });
     _rootNode.appendChild(_parentTree);
   };
-
   return {
     run: run
   };
-};
+}
 
 const explorer = new DOMExplorer(data, rootNode);
 explorer.run();
