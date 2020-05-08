@@ -149,7 +149,10 @@ function DOMExplorer(data) {
             }
             return _node;
         } else {
-            _node = li(item.title);
+            _node = li();
+            _icon.innerHTML = 'insert_drive_file'
+            _node.appendChild(_icon);
+            _node.appendChild(document.createTextNode(item.title));
             return _node;
         }
 
