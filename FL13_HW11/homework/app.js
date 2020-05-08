@@ -180,21 +180,34 @@ function DOMExplorer(data) {
         }
         rootNode.appendChild(_parentTree);
     };
-
+    const rename = (e) => {
+        e.target.contentEditable = 'true';
+        e.target.focus();
+    }
+    const deleteItem = (e) => {
+        e.target.style.display = 'none';
+    }
     const contextMenuActions = [
         {
-            name: 'rename'
+            name: 'rename',
+            action: rename
         },
         {
-            name: 'delete'
+            name: 'delete',
+            action: deleteItem
         }
     ];
-
+    //TODO: fix editable, fix target item(must be only #root li)
+    let _contextTargetEvent = null;
     const _contextMenu = createNode('div');
     _contextMenu.id = 'contextMenu';
     const _menuList = ul(null, 'menu-list');
     for (const contextAction of contextMenuActions) {
-        _menuList.appendChild(li(contextAction.name));
+        const _contextItem = li(contextAction.name);
+        _contextItem.addEventListener('click', () => {
+            contextAction.action(_contextTargetEvent);
+        });
+        _menuList.appendChild(_contextItem);
     }
     _contextMenu.appendChild(_menuList);
     document.body.appendChild(_contextMenu);
@@ -203,7 +216,7 @@ function DOMExplorer(data) {
     const callContext = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log(e.target.nodeName);
+        _contextTargetEvent = e;
         if (e.target.nodeName === "EM") {
             return;
         }
