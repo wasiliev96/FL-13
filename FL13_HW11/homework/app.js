@@ -113,11 +113,11 @@ function DOMExplorer(data) {
      * @param {string} inputId - joined input id
      * @returns {HTMLElement}
      */
-    const label = (title, inputId) => {
+    const label = (title, inputId, icon) => {
         const _label = createNode('label');
         _label.setAttribute('for', inputId);
-        // _label.className = 'material-icons';
-        _label.innerHTML = title;
+        _label.appendChild(icon);
+        _label.appendChild(document.createTextNode(title));
         return _label;
     };
 
@@ -128,13 +128,17 @@ function DOMExplorer(data) {
      */
     const createItem = (item) => {
         let _node;
+        const _icon = createNode('i');
+        _icon.className = 'material-icons';
+
         if (item.folder) {
             _node = li();
             _node.classList.add('folder');
-            const _label = label(item.title, `node` + ++_folderId);
-            _node.appendChild(_label);
+            _icon.innerHTML = 'folder';
+            const _label = label(item.title, `node` + ++_folderId, _icon);
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
+            _node.appendChild(_label);
             if (item.children) {
                 const _childrenList = ul();
                 for (const child of item.children) {
