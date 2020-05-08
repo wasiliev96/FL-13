@@ -1,9 +1,23 @@
 /* TODO: your styles goes here*/
 * {
-    margin     : 0;
-    padding    : 0;
-    box-sizing : border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.container{
-    background-color : blue;
+
+body {
+    font-size: 16px;
+}
+
+.container {
+    padding-left: 2em;
+    user-select: none;
+}
+
+.container input[type='checkbox'] {
+    /*display: none;*/
+}
+
+.container li {
+    list-style-type: none;
 }
