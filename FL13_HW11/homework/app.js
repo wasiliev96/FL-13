@@ -57,7 +57,7 @@ const rootNode = document.getElementById('root');
 /**
  *
  * @param {[{}]} data
- * @returns {{run: run}} - run method interface
+ * @returns {{createTree: createTree}} - run method interface
  * @constructor
  */
 function DOMExplorer (data) {
@@ -149,19 +149,20 @@ function DOMExplorer (data) {
 
   };
 
-  const run = () => {
+  const createTree = () => {
+    let _data = data;
     const _parentTree = ul();
-    for (const item of data) {
+    for (const item of _data) {
       const _item = createItem(item);
       _parentTree.appendChild(_item);
     }
     rootNode.appendChild(_parentTree);
   };
   return {
-    run: run
+    createTree: createTree
   };
 
 }
 
 const explorer = new DOMExplorer(data);
-explorer.run();
+explorer.createTree();
