@@ -21,3 +21,22 @@ body {
 .container li {
     list-style-type: none;
 }
+
+.node label:before,
+li:not(.has-child):before {
+    font-family: 'Material Icons', serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.node label:before {
+    content: 'folder';
+    color: hsla(45, 100%, 50%, 1);
+}
+
+li:not(.folder):before {
+    content: 'insert_drive_file';
+    color: hsla(0, 0%, 50%, 1);
+}

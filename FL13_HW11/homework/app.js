@@ -92,7 +92,7 @@ function DOMExplorer(data) {
      */
     const ul = (innerData = '') => {
         const _container = createNode('ul', innerData);
-        _container.className = 'container material-icon';
+        _container.className = 'container';
         return _container;
     };
     /**
@@ -116,7 +116,7 @@ function DOMExplorer(data) {
     const label = (title, inputId) => {
         const _label = createNode('label');
         _label.setAttribute('for', inputId);
-        _label.className = 'material-icon';
+        // _label.className = 'material-icons';
         _label.innerHTML = title;
         return _label;
     };
@@ -130,6 +130,7 @@ function DOMExplorer(data) {
         let _node;
         if (item.folder) {
             _node = li();
+            _node.classList.add('folder');
             const _label = label(item.title, `node` + ++_folderId);
             _node.appendChild(_label);
             const _checkbox = checkbox(`node` + _folderId);
