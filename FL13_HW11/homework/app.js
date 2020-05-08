@@ -200,7 +200,10 @@ function DOMExplorer(data) {
     const callContext = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log('context called');
+        console.log(e.target.nodeName);
+        if (e.target.nodeName === "EM") {
+            return;
+        }
         _contextMenu.style.top = e.clientY + 'px';
         _contextMenu.style.left = e.clientX + 'px';
         _contextMenu.style.display = 'inline-block';
