@@ -136,7 +136,7 @@ function DOMExplorer(data) {
         }, false);
         _node.addEventListener('mouseout', function (e) {
             this.classList.remove('item__hover');
-        },false)
+        }, false)
         if (item.folder) {
             _node.classList.add('folder');
             _icon.innerHTML = 'folder';
@@ -144,14 +144,18 @@ function DOMExplorer(data) {
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
             _node.appendChild(_label);
+            const _childrenList = ul();
             if (item.children) {
-                const _childrenList = ul();
                 for (const child of item.children) {
                     const _child = createItem(child);
                     _childrenList.appendChild(_child);
                 }
-                _node.appendChild(_childrenList);
+            } else {
+                const _emptyText = document.createElement('em');
+                _emptyText.innerHTML = 'Folder is empty';
+                _childrenList.appendChild(_emptyText);
             }
+            _node.appendChild(_childrenList);
             return _node;
         } else {
             _icon.innerHTML = 'insert_drive_file'

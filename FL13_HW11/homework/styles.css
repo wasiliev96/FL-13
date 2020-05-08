@@ -9,16 +9,33 @@ body {
     font-size: 16px;
 }
 
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container:only-child {
+    padding: 2em 2em 2em 1.5em;
+    display: inline-block;
+    min-width: 300px;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px hsla(0, 0%, 0%, 0.3);
+}
+
 .container {
-    font-family: Arial, serif;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     font-size: 1rem;
     padding-left: 2em;
     user-select: none;
 }
 
-.container:only-child {
-    padding: 2em;
+.container em {
+    font-size: .9em;
+    color: hsla(0, 0%, 0%, .5);
 }
+
 
 .container input[type='checkbox'] {
     display: none;
@@ -36,16 +53,24 @@ body {
     list-style-type: none;
 }
 
-.container li label {
+.container li label, li.node:not(.folder) {
     display: flex;
     align-items: flex-end;
     padding: 0.2em;
 }
 
-.item__hover {
+.container .item__hover {
     background-color: hsla(0, 0%, 90%, 1);
 }
 
-li.item__hover ul {
+.container li.item__hover ul {
     background-color: #fff;
+}
+
+.container .folder label > i {
+    color: hsla(45, 100%, 50%, 1);
+}
+
+.container .node > i {
+    color: hsla(0, 0%, 0%, 0.6);
 }
