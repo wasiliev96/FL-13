@@ -56,56 +56,112 @@ const rootNode = document.getElementById('root');
 
 /**
  *
- * @param {array} data - Tree data
- * @param {HTMLElement} rootNode - where to put tree
- * @returns  {{run: run}}
+ * @param {[{}]} data
+ * @returns {{run: run}} - run method interface
  * @constructor
  */
-function DOMExplorer (data, rootNode) {
-  const _data = data;
-  const _rootNode = rootNode || document.body;
-  const _parentTree = document.createElement('ul');
+function DOMExplorer (data) {
+  let _folderId = 0;
 
   /**
    *
-   * @param {HTMLElement} parentNode - where to attach current node
-   * @param {object} node data for a current node creating
+   * @param {string} type HTML element tag name, required
+   * @param {*} innerHTML - node inner data, not required
    * @returns {HTMLElement}
    */
-  const createNode = (parentNode, node) => {
-    const type_file = 'li';
-    const type_folder = 'ul';
-    const _name = document.createTextNode(
-      node.folder ? `Folder ${ node.title }:` : node.title);
-    const _node = document.createElement(node.folder ? type_folder : type_file);
-    const _folder = document.createElement(type_folder);
+  const createNode = (type, innerHTML = '') => {
+    const _node = document.createElement(type);
+    _node.innerHTML = innerHTML;
+    return _node;
+  };
+  /**
+   *
+   * @param {*} innerData - li inner data, not required
+   * @returns {HTMLElement}
+   */
+  const li = (innerData = '') => {
+    const _node = createNode('li', innerData);
+    _node.className = 'node';
+    return _node;
 
-    if (node.folder && node.children) {
-      node.children.map((item) => {
-        _node.appendChild(createNode(_node, item));
-      });
-      _folder.appendChild(_name);
-      _folder.appendChild(_node);
-      return _folder;
-    } else {
-      _node.appendChild(_name);
-      return _node;
-    }
+  };
+  /**
+   *
+   * @param {*} innerData - inner data, not required
+   * @returns {HTMLElement}
+   */
+  const ul = (innerData = '') => {
+    const _container = createNode('ul', innerData);
+    _container.className = 'container';
+    return _container;
+  };
+  /**
+   *
+   * @param {string} inputId - id for checkbox
+   * @returns {HTMLElement}
+   */
+  const checkbox = (inputId) => {
+    const _input = createNode('input');
+    _input.setAttribute('type', 'checkbox');
+    _input.setAttribute('id', inputId);
+    return _input;
   };
 
   /**
-   * Main method. Start generate file tree.
+   *
+   * @param {string} title
+   * @param {string} inputId - joined input id
+   * @returns {HTMLElement}
    */
+  const label = (title, inputId) => {
+    const _label = createNode('label');
+    _label.setAttribute('for', inputId);
+    _label.innerHTML = title;
+    return _label;
+  };
+
+  /**
+   *
+   * @param {object} item - structured item(file|folder) schema
+   * @returns {HTMLElement}
+   */
+  const createItem = (item) => {
+    let _node;
+    if (item.folder) {
+      _node = li();
+      const _label = label(item.title, `node` + ++_folderId);
+      _node.appendChild(_label);
+      const _checkbox = checkbox(`node` + _folderId);
+      _node.appendChild(_checkbox);
+      if (item.children) {
+        const _childrenList = ul();
+        for (const child of item.children) {
+          const _child = createItem(child);
+          _childrenList.appendChild(_child);
+        }
+        _node.appendChild(_childrenList);
+      }
+      return _node;
+    } else {
+      _node = li(item.title);
+      return _node;
+    }
+
+  };
+
   const run = () => {
-    _data.forEach((item) => {
-      _parentTree.appendChild(createNode(_rootNode, item));
-    });
-    _rootNode.appendChild(_parentTree);
+    const _parentTree = ul();
+    for (const item of data) {
+      const _item = createItem(item);
+      _parentTree.appendChild(_item);
+    }
+    rootNode.appendChild(_parentTree);
   };
   return {
     run: run
   };
+
 }
 
-const explorer = new DOMExplorer(data, rootNode);
+const explorer = new DOMExplorer(data);
 explorer.run();
