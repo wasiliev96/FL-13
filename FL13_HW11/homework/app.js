@@ -61,14 +61,6 @@ const rootNode = document.getElementById('root');
  */
 function DOMExplorer(data) {
     let _folderId = 0;
-    const contextMenuActions = [
-        {
-            name: 'rename'
-        },
-        {
-            name: 'delete'
-        }
-    ];
     /**
      *
      * @param {string} type HTML element tag name, required
@@ -188,6 +180,16 @@ function DOMExplorer(data) {
         }
         rootNode.appendChild(_parentTree);
     };
+
+    const contextMenuActions = [
+        {
+            name: 'rename'
+        },
+        {
+            name: 'delete'
+        }
+    ];
+
     const _contextMenu = createNode('div');
     _contextMenu.id = 'contextMenu';
     const _menuList = ul(null, 'menu-list');
@@ -196,6 +198,7 @@ function DOMExplorer(data) {
     }
     _contextMenu.appendChild(_menuList);
     document.body.appendChild(_contextMenu);
+
 
     const callContext = (e) => {
         e.preventDefault();
