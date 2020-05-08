@@ -21,7 +21,7 @@ body {
 }
 
 .container input[type='checkbox'] {
-    /*display: none;*/
+    display: none;
 }
 
 .container input[type='checkbox'] ~ ul {
@@ -34,5 +34,18 @@ body {
 
 .container li {
     list-style-type: none;
-    padding: .2em;
+}
+
+.container li label {
+    display: flex;
+    align-items: flex-end;
+    padding: 0.2em;
+}
+
+.item__hover {
+    background-color: hsla(0, 0%, 90%, 1);
+}
+
+li.item__hover ul {
+    background-color: #fff;
 }

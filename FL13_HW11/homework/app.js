@@ -52,7 +52,6 @@ const data = [
 
 const rootNode = document.getElementById('root');
 
-// TODO: your code goes here
 
 /**
  *
@@ -112,6 +111,7 @@ function DOMExplorer(data) {
      * @param {string} title
      * @param {string} inputId - joined input id
      * @returns {HTMLElement}
+     * @param {HTMLElement} icon label's icon
      */
     const label = (title, inputId, icon) => {
         const _label = createNode('label');
@@ -127,12 +127,17 @@ function DOMExplorer(data) {
      * @returns {HTMLElement}
      */
     const createItem = (item) => {
-        let _node;
+        let _node = li();
         const _icon = createNode('i');
         _icon.className = 'material-icons';
-
+        _node.addEventListener('mouseover', function (e) {
+            e.stopPropagation();
+            this.classList.add('item__hover');
+        }, false);
+        _node.addEventListener('mouseout', function (e) {
+            this.classList.remove('item__hover');
+        },false)
         if (item.folder) {
-            _node = li();
             _node.classList.add('folder');
             _icon.innerHTML = 'folder';
             const _label = label(item.title, `node` + ++_folderId, _icon);
@@ -149,7 +154,6 @@ function DOMExplorer(data) {
             }
             return _node;
         } else {
-            _node = li();
             _icon.innerHTML = 'insert_drive_file'
             _node.appendChild(_icon);
             _node.appendChild(document.createTextNode(item.title));
