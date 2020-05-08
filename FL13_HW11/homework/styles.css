@@ -7,6 +7,7 @@
 
 body {
     font-size: 16px;
+    position: relative;
 }
 
 #root {
@@ -53,6 +54,10 @@ body {
     list-style-type: none;
 }
 
+.container li, .container label {
+    cursor: pointer;
+}
+
 .container li label, li.node:not(.folder) {
     display: flex;
     align-items: flex-end;
@@ -73,4 +78,24 @@ body {
 
 .container .node > i {
     color: hsla(0, 0%, 0%, 0.6);
+}
+
+#contextMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 95%, 1);
+    border-radius: 4px;
+}
+
+#contextMenu li {
+    text-transform: capitalize;
+    font-weight: bold;
+    color: hsla(0, 0%, 0%, 0.8);
+    padding: .3em 1em;
+    cursor: pointer;
+}
+
+#contextMenu li:hover {
+    background-color: hsla(0, 0%, 80%, 1);
 }

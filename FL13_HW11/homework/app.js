@@ -61,7 +61,14 @@ const rootNode = document.getElementById('root');
  */
 function DOMExplorer(data) {
     let _folderId = 0;
-
+    const contextMenuActions = [
+        {
+            name: 'rename'
+        },
+        {
+            name: 'delete'
+        }
+    ];
     /**
      *
      * @param {string} type HTML element tag name, required
@@ -88,10 +95,13 @@ function DOMExplorer(data) {
      *
      * @param {*} innerData - inner data, not required
      * @returns {HTMLElement}
+     * @param className
      */
-    const ul = (innerData = '') => {
+    const ul = (innerData, className) => {
         const _container = createNode('ul', innerData);
-        _container.className = 'container';
+        if (className) {
+            _container.className = className;
+        }
         return _container;
     };
     /**
@@ -128,6 +138,9 @@ function DOMExplorer(data) {
      */
     const createItem = (item) => {
         let _node = li();
+        _node.addEventListener('contextmenu', (e) => {
+            callContext(e);
+        }, {})
         const _icon = createNode('i');
         _icon.className = 'material-icons';
         _node.addEventListener('mouseover', function (e) {
@@ -144,7 +157,7 @@ function DOMExplorer(data) {
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
             _node.appendChild(_label);
-            const _childrenList = ul();
+            const _childrenList = ul('', 'container');
             if (item.children) {
                 for (const child of item.children) {
                     const _child = createItem(child);
@@ -168,13 +181,35 @@ function DOMExplorer(data) {
 
     const createTree = () => {
         let _data = data;
-        const _parentTree = ul();
+        const _parentTree = ul('', 'container');
         for (const item of _data) {
             const _item = createItem(item);
             _parentTree.appendChild(_item);
         }
         rootNode.appendChild(_parentTree);
     };
+    const _contextMenu = createNode('div');
+    _contextMenu.id = 'contextMenu';
+    const _menuList = ul(null, 'menu-list');
+    for (const contextAction of contextMenuActions) {
+        _menuList.appendChild(li(contextAction.name));
+    }
+    _contextMenu.appendChild(_menuList);
+    document.body.appendChild(_contextMenu);
+
+    const callContext = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('context called');
+        _contextMenu.style.top = e.clientY + 'px';
+        _contextMenu.style.left = e.clientX + 'px';
+        _contextMenu.style.display = 'inline-block';
+        document.body.addEventListener('click', event => {
+            _contextMenu.style.display = 'none'
+        }, {
+            once: true
+        });
+    }
     return {
         createTree: createTree
     };
