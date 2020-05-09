@@ -194,6 +194,11 @@ function DOMExplorer(data) {
 
     const rename = (e) => {
         const _target = e.target.getElementsByTagName('input')[0];
+        _target.addEventListener('keypress', (e) => {
+            if (e.keyCode === 13) {
+                _target.blur();
+            }
+        })
         _target.disabled = false;
         const _targetSelection = _target.value.split('.')[0];
         _target.selectionStart = 0;
@@ -201,7 +206,8 @@ function DOMExplorer(data) {
         _target.focus();
     }
     const deleteItem = (e) => {
-        e.target.style.display = 'none';
+        e.target.parentNode.style.display = 'none';
+        console.log(e.target.parentNode);
     }
 
     const contextMenuActions = [
@@ -214,7 +220,6 @@ function DOMExplorer(data) {
             action: deleteItem
         }
     ];
-    //TODO: fix editable, fix target item(must be only #root li)
     let _contextTargetEvent = null;
     const _contextMenu = createNode('div');
     _contextMenu.id = 'contextMenu';
