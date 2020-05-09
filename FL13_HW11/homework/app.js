@@ -127,7 +127,6 @@ function DOMExplorer(data) {
      * @returns {HTMLElement}
      */
     const createItem = (item) => {
-
         let _node = li();
         _node.addEventListener('mouseover', function (e) {
             e.stopPropagation();
@@ -167,8 +166,7 @@ function DOMExplorer(data) {
                     _childrenList.appendChild(_child);
                 }
             } else {
-                const _emptyText = document.createElement('em');
-                _emptyText.innerHTML = 'Folder is empty';
+                const _emptyText = document.createTextNode('Folder is empty');
                 _childrenList.appendChild(_emptyText);
             }
             _node.appendChild(_childrenList);
@@ -206,8 +204,21 @@ function DOMExplorer(data) {
         _target.focus();
     }
     const deleteItem = (e) => {
-        e.target.parentNode.style.display = 'none';
-        console.log(e.target.parentNode.style);
+        const _item = e.target.parentNode;
+        let _siblings = _item.parentNode.childNodes;
+        [..._siblings].filter((item) => {
+            if (item.style.display === 'none') {
+                return false;
+            }
+        })
+        if (_siblings.length > 1) {
+            _item.remove();
+        } else {
+            console.log(_item.parentNode.nodeName);
+            _item.parentNode.innerHTML = 'Folder is empty';
+        }
+        console.log(`Siblings quantity: ${_siblings.length}`);
+
     }
 
     const contextMenuActions = [
@@ -241,7 +252,7 @@ function DOMExplorer(data) {
         e.stopPropagation();
         e.target.style.position = 'relative';
         _contextTargetEvent = e;
-        if (e.target.nodeName === 'EM') {
+        if (e.target.nodeName === 'UL') {
             return;
         }
         const _bounds = e.target.getBoundingClientRect();
