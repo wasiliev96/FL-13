@@ -131,10 +131,10 @@ function DOMExplorer(data) {
         let _node = li();
         _node.addEventListener('mouseover', function (e) {
             e.stopPropagation();
-            this.classList.add('item__hover');
+            _node.classList.add('item__hover');
         }, false);
-        _node.addEventListener('mouseout', () => {
-            this.classList.remove('item__hover');
+        _node.addEventListener('mouseout', (e) => {
+            _node.classList.remove('item__hover');
         }, false)
 
         _node.addEventListener('contextmenu', (e) => {
@@ -207,7 +207,7 @@ function DOMExplorer(data) {
     }
     const deleteItem = (e) => {
         e.target.parentNode.style.display = 'none';
-        console.log(e.target.parentNode);
+        console.log(e.target.parentNode.style);
     }
 
     const contextMenuActions = [
@@ -233,19 +233,23 @@ function DOMExplorer(data) {
         _menuList.appendChild(_contextItem);
     }
     _contextMenu.appendChild(_menuList);
-    document.body.appendChild(_contextMenu);
+    // document.body.appendChild(_contextMenu);
 
 
     const callContext = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        e.target.style.position = 'relative';
         _contextTargetEvent = e;
         if (e.target.nodeName === 'EM') {
             return;
         }
-        _contextMenu.style.top = e.clientY + 'px';
-        _contextMenu.style.left = e.clientX + 'px';
+        const _bounds = e.target.getBoundingClientRect();
+        _contextMenu.style.top = e.clientY - _bounds.top + 'px';
+        _contextMenu.style.left = e.clientX - _bounds.left + 'px';
         _contextMenu.style.display = 'inline-block';
+        e.target.appendChild(_contextMenu);
+
         document.body.addEventListener('click', () => {
             _contextMenu.style.display = 'none'
         }, {
