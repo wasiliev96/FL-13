@@ -27,7 +27,9 @@ input[type='text']{
 .container:only-child {
     padding: 2em 2em 2em 1.5em;
     display: inline-block;
-    margin: 20px auto;
+    width: 40%;
+    min-width: 300px;
+    max-width: 700px;
     border-radius: 5px;
     box-shadow: 0 0 5px 3px hsla(0, 0%, 0%, 0.3);
     transition: all .3s ease;
@@ -36,10 +38,11 @@ input[type='text']{
 .container {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     font-size: 1rem;
-    padding-left: 2em;
     user-select: none;
 }
-
+.container ul{
+    padding-left: 2em;
+}
 .container em {
     font-size: .9em;
     color: hsla(0, 0%, 0%, .5);
@@ -81,9 +84,7 @@ input[type='text']{
     display: flex;
     align-items: flex-end;
 }
-.container li{
-    margin: 0.3em;
-}
+
 .container label span{
     display: block;
     width: 100%;
