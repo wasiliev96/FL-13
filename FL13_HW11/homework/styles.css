@@ -24,13 +24,13 @@ input[type='text'] {
 
 #root {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
 .container:only-child {
+    margin-top: 2em;
+    height:fit-content;
     padding: 2em 2em 2em 1.5em;
-    display: inline-block;
     width: 40%;
     min-width: 300px;
     max-width: 700px;
@@ -144,9 +144,8 @@ input[type='text'] {
 
 #contextMenu li {
     text-transform: capitalize;
-    font-weight: bold;
     color: hsla(0, 0%, 0%, 0.8);
-    padding: .3em 1em;
+    padding: .6em 1em;
     cursor: pointer;
 }
 

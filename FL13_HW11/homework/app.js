@@ -52,15 +52,24 @@ const data = [
 
 const rootNode = document.getElementById('root');
 
-
+//@ts-check
 /**
- *
+ * Main program object
  * @param {[{}]} data
  * @returns {{createTree: createTree}} - run method interface
  * @constructor
  */
 function DOMExplorer(data) {
+
+    /**
+     * folder's ID's counter. For easier set id
+     * @type {number}
+     * @private
+     */
     let _folderId = 0;
+
+    /** Some helpers for creating DOM */
+
     /**
      *
      * @param {string} type HTML element tag name, required
@@ -87,7 +96,7 @@ function DOMExplorer(data) {
      *
      * @param {*} innerData - inner data, not required
      * @returns {HTMLElement}
-     * @param className
+     * @param className - add custom class to ul
      */
     const ul = (innerData, className) => {
         const _container = createNode('ul', innerData);
@@ -110,10 +119,8 @@ function DOMExplorer(data) {
 
     /**
      *
-     * @param {string} title
      * @param {string} inputId - joined input id
      * @returns {HTMLElement}
-     * @param {HTMLElement} icon label's icon
      */
     const label = (inputId) => {
         const _label = createNode('label');
@@ -122,26 +129,25 @@ function DOMExplorer(data) {
     };
 
     /**
-     *
+     * Creates tree item, depends on type (file|folder)
      * @param {object} item - structured item(file|folder) schema
-     * @returns {HTMLElement}
+     * @returns {HTMLElement} - node structured with all children
      */
     const createItem = (item) => {
         let _node = li();
+
         _node.addEventListener('mouseover', function (e) {
             e.stopPropagation();
             _node.classList.add('item__hover');
         }, false);
-        _node.addEventListener('mouseout', (e) => {
+        _node.addEventListener('mouseout', () => {
             _node.classList.remove('item__hover');
         }, false)
-
         _node.addEventListener('contextmenu', (e) => {
             callContext(e);
         }, {})
 
         const _label = label(`node` + ++_folderId);
-
 
         const _input = createNode('input');
         _input.setAttribute('type', 'text');
@@ -154,10 +160,13 @@ function DOMExplorer(data) {
         })
         _node.appendChild(_label);
 
+        // /** If folder has child - recursive loop for them */
         if (item.folder) {
             _node.classList.add('folder');
+
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
+
             const _childrenList = ul('', 'container');
 
             if (item.children) {
@@ -172,12 +181,14 @@ function DOMExplorer(data) {
             _node.appendChild(_childrenList);
             return _node;
         } else {
-            // _label.appendChild(document.createTextNode(item.title));
             return _node;
         }
 
     };
 
+    /**
+     * run main method for all first-level objects, move them to one root list
+     */
     const createTree = () => {
         let _data = data;
         const _parentTree = ul('', 'container');
@@ -189,6 +200,10 @@ function DOMExplorer(data) {
     };
 
 
+    /**
+     * rename event.target, pre-select a name without extension.
+     * @param {event} e - context menu call event
+     */
     const rename = (e) => {
         const ENTER_KEY_NUM = 13;
         const _target = e.target.getElementsByTagName('input')[0];
@@ -203,24 +218,24 @@ function DOMExplorer(data) {
         _target.selectionEnd = _targetSelection.length;
         _target.focus();
     }
+    /**
+     * Removes item if siblings exist, override them for notification otherwise
+     * @param {event} e - context menu call event
+     */
     const deleteItem = (e) => {
         const _item = e.target.parentNode;
         let _siblings = _item.parentNode.childNodes;
-        [..._siblings].filter((item) => {
-            if (item.style.display === 'none') {
-                return false;
-            }
-        })
         if (_siblings.length > 1) {
             _item.remove();
         } else {
-            console.log(_item.parentNode.nodeName);
             _item.parentNode.innerHTML = 'Folder is empty';
         }
-        console.log(`Siblings quantity: ${_siblings.length}`);
-
     }
 
+    /**
+     * Array of context menu actions
+     * @type {({name: string, action: rename}|{name: string, action: deleteItem})[]}
+     */
     const contextMenuActions = [
         {
             name: 'rename',
@@ -231,10 +246,18 @@ function DOMExplorer(data) {
             action: deleteItem
         }
     ];
+
+    /**
+     * Catches context event for context menu
+     * @type {event}
+     * @private
+     */
     let _contextTargetEvent = null;
+
     const _contextMenu = createNode('div');
     _contextMenu.id = 'contextMenu';
     const _menuList = ul(null, 'menu-list');
+
 
     for (const contextAction of contextMenuActions) {
         const _contextItem = li(contextAction.name);
@@ -244,9 +267,11 @@ function DOMExplorer(data) {
         _menuList.appendChild(_contextItem);
     }
     _contextMenu.appendChild(_menuList);
-    // document.body.appendChild(_contextMenu);
 
-
+    /**
+     * Calls context window
+     * @param {event} e - dblclick event
+     */
     const callContext = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -255,12 +280,17 @@ function DOMExplorer(data) {
         if (e.target.nodeName === 'UL') {
             return;
         }
+        /**Get's target rectangle, set context position relative to that one */
         const _bounds = e.target.getBoundingClientRect();
         _contextMenu.style.top = e.clientY - _bounds.top + 'px';
         _contextMenu.style.left = e.clientX - _bounds.left + 'px';
         _contextMenu.style.display = 'inline-block';
         e.target.appendChild(_contextMenu);
 
+
+        /**
+         * Close context for single click everywhere
+         */
         document.body.addEventListener('click', () => {
             _contextMenu.style.display = 'none'
         }, {
