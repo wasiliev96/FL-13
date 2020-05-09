@@ -115,7 +115,7 @@ function DOMExplorer(data) {
      * @returns {HTMLElement}
      * @param {HTMLElement} icon label's icon
      */
-    const label = (inputId,) => {
+    const label = (inputId) => {
         const _label = createNode('label');
         _label.setAttribute('for', inputId);
         return _label;
@@ -133,15 +133,13 @@ function DOMExplorer(data) {
             e.stopPropagation();
             this.classList.add('item__hover');
         }, false);
-        _node.addEventListener('mouseout', function (e) {
+        _node.addEventListener('mouseout', () => {
             this.classList.remove('item__hover');
         }, false)
 
         _node.addEventListener('contextmenu', (e) => {
             callContext(e);
         }, {})
-        const _icon = createNode('i');
-        _icon.className = 'material-icons';
 
         const _label = label(`node` + ++_folderId);
 
@@ -151,16 +149,18 @@ function DOMExplorer(data) {
         _input.disabled = 'true';
         _input.value = item.title;
 
-        _label.appendChild(_icon);
         _label.appendChild(_input);
+        _label.addEventListener('click', () => {
+            _label.classList.toggle('folder_open');
+        })
         _node.appendChild(_label);
 
         if (item.folder) {
             _node.classList.add('folder');
-            _icon.innerHTML = 'folder';
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
             const _childrenList = ul('', 'container');
+
             if (item.children) {
                 for (const child of item.children) {
                     const _child = createItem(child);
@@ -174,7 +174,6 @@ function DOMExplorer(data) {
             _node.appendChild(_childrenList);
             return _node;
         } else {
-            _icon.innerHTML = 'insert_drive_file'
             // _label.appendChild(document.createTextNode(item.title));
             return _node;
         }
@@ -193,9 +192,10 @@ function DOMExplorer(data) {
 
 
     const rename = (e) => {
+        const ENTER_KEY_NUM = 13;
         const _target = e.target.getElementsByTagName('input')[0];
         _target.addEventListener('keypress', (e) => {
-            if (e.keyCode === 13) {
+            if (e.keyCode === ENTER_KEY_NUM) {
                 _target.blur();
             }
         })
@@ -240,13 +240,13 @@ function DOMExplorer(data) {
         e.preventDefault();
         e.stopPropagation();
         _contextTargetEvent = e;
-        if (e.target.nodeName === "EM") {
+        if (e.target.nodeName === 'EM') {
             return;
         }
         _contextMenu.style.top = e.clientY + 'px';
         _contextMenu.style.left = e.clientX + 'px';
         _contextMenu.style.display = 'inline-block';
-        document.body.addEventListener('click', event => {
+        document.body.addEventListener('click', () => {
             _contextMenu.style.display = 'none'
         }, {
             once: true
