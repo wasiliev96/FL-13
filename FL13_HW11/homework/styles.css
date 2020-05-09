@@ -78,7 +78,7 @@ input[type='text'] {
 
 .container li.node label:before {
     font-family: 'Material Icons';
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 .container li.node:not(.folder) label:before {
