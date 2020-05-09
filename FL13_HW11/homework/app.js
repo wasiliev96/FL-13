@@ -115,11 +115,9 @@ function DOMExplorer(data) {
      * @returns {HTMLElement}
      * @param {HTMLElement} icon label's icon
      */
-    const label = (title, inputId, icon) => {
+    const label = (inputId,) => {
         const _label = createNode('label');
         _label.setAttribute('for', inputId);
-        _label.appendChild(icon);
-        _label.appendChild(document.createTextNode(title));
         return _label;
     };
 
@@ -129,12 +127,8 @@ function DOMExplorer(data) {
      * @returns {HTMLElement}
      */
     const createItem = (item) => {
+
         let _node = li();
-        _node.addEventListener('contextmenu', (e) => {
-            callContext(e);
-        }, {})
-        const _icon = createNode('i');
-        _icon.className = 'material-icons';
         _node.addEventListener('mouseover', function (e) {
             e.stopPropagation();
             this.classList.add('item__hover');
@@ -142,13 +136,30 @@ function DOMExplorer(data) {
         _node.addEventListener('mouseout', function (e) {
             this.classList.remove('item__hover');
         }, false)
+
+        _node.addEventListener('contextmenu', (e) => {
+            callContext(e);
+        }, {})
+        const _icon = createNode('i');
+        _icon.className = 'material-icons';
+
+        const _label = label(`node` + ++_folderId);
+
+
+        const _input = createNode('input');
+        _input.setAttribute('type', 'text');
+        _input.disabled = 'true';
+        _input.value = item.title;
+
+        _label.appendChild(_icon);
+        _label.appendChild(_input);
+        _node.appendChild(_label);
+
         if (item.folder) {
             _node.classList.add('folder');
             _icon.innerHTML = 'folder';
-            const _label = label(item.title, `node` + ++_folderId, _icon);
             const _checkbox = checkbox(`node` + _folderId);
             _node.appendChild(_checkbox);
-            _node.appendChild(_label);
             const _childrenList = ul('', 'container');
             if (item.children) {
                 for (const child of item.children) {
@@ -164,8 +175,7 @@ function DOMExplorer(data) {
             return _node;
         } else {
             _icon.innerHTML = 'insert_drive_file'
-            _node.appendChild(_icon);
-            _node.appendChild(document.createTextNode(item.title));
+            // _label.appendChild(document.createTextNode(item.title));
             return _node;
         }
 
@@ -180,13 +190,20 @@ function DOMExplorer(data) {
         }
         rootNode.appendChild(_parentTree);
     };
+
+
     const rename = (e) => {
-        e.target.contentEditable = 'true';
-        e.target.focus();
+        const _target = e.target.getElementsByTagName('input')[0];
+        _target.disabled = false;
+        const _targetSelection = _target.value.split('.')[0];
+        _target.selectionStart = 0;
+        _target.selectionEnd = _targetSelection.length;
+        _target.focus();
     }
     const deleteItem = (e) => {
         e.target.style.display = 'none';
     }
+
     const contextMenuActions = [
         {
             name: 'rename',
@@ -202,6 +219,7 @@ function DOMExplorer(data) {
     const _contextMenu = createNode('div');
     _contextMenu.id = 'contextMenu';
     const _menuList = ul(null, 'menu-list');
+
     for (const contextAction of contextMenuActions) {
         const _contextItem = li(contextAction.name);
         _contextItem.addEventListener('click', () => {
