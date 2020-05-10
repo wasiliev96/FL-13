@@ -129,7 +129,7 @@ function Fighter(props) {
  * @param {object } fighter1
  * @param {object} fighter2
  */
-let battle = (fighter1, fighter2) => {
+const battle = (fighter1, fighter2) => {
     if (fighter1.getHealth() <= 0) {
         console.log(`${fighter1.getName()} is dead and can't fight`);
         return;
@@ -147,3 +147,7 @@ let battle = (fighter1, fighter2) => {
     }
     battle(fighter2, fighter1);
 };
+
+const fighter1 = new Fighter({name: 'Maximus', damage: 20, strength: 20, agility: 15, hp: 100});
+const fighter2 = new Fighter({name: 'Commodus', damage: 25, strength: 25, agility: 20, hp: 90});
+battle(fighter1, fighter2);
