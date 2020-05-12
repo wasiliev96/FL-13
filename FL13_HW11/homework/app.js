@@ -136,18 +136,18 @@ function DOMExplorer(data) {
     const createItem = (item) => {
         let _node = li();
 
-        _node.addEventListener('mouseover', function (e) {
+        const _label = label(`node` + ++_folderId);
+        _label.addEventListener('mouseover', function (e) {
             e.stopPropagation();
-            _node.classList.add('item__hover');
+            _label.classList.add('item__hover');
         }, false);
-        _node.addEventListener('mouseout', () => {
-            _node.classList.remove('item__hover');
+        _label.addEventListener('mouseout', () => {
+            _label.classList.remove('item__hover');
         }, false)
-        _node.addEventListener('contextmenu', (e) => {
+        _label.addEventListener('contextmenu', (e) => {
             callContext(e);
         }, {})
 
-        const _label = label(`node` + ++_folderId);
 
         const _input = createNode('input');
         _input.setAttribute('type', 'text');

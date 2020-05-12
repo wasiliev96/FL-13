@@ -104,13 +104,14 @@ input[type='text'] {
     height: 100%;
 }
 
-.container li, .container label {
+.container label {
     cursor: pointer;
 }
 
 .container li label, li.node:not(.folder) {
     display: flex;
     align-items: flex-end;
+    width: 100%;
 }
 .container .item__hover {
     background-color: hsla(0, 0%, 90%, 1);
