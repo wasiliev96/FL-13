@@ -8,7 +8,9 @@
 body {
     font-size: 16px;
 }
-
+#root{
+    position: relative;
+}
 .container {
     display: flex;
     height: 100vh;
@@ -40,14 +42,40 @@ body {
 
 .bookBox article {
     display: none;
-    padding: 2em;
+    padding: 4em;
     width: 100%;
-    max-width: 600px;
+    min-height: 600px;
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
 }
-
+.bookBox article img{
+    width: 50%;
+    max-width: 300px;
+    object-fit: cover;
+}
 .bookBox article.active {
     display: flex;
+}
+
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0,0%,0%,0.7);
+}
+.modal input, .modal textarea{
+    width: 70%;
+    max-width: 900px;
+    padding: .5em;
+    margin: .5em;
+}
+.modal textarea{
+    height: 300px;
 }

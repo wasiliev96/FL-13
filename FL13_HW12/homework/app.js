@@ -22,8 +22,8 @@ const books = [
     id: 3,
     name: "Specification by Example",
     "authors": ["Gojko Adzic"],
-    "imageUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/adzic.jpg"
-
+    "imageUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/adzic.jpg",
+    "plot": `Lorem ipsum dolor sit amet.`
   }
 ];
 
@@ -54,14 +54,60 @@ const li = (className) => {
 
 let previousListItem;
 
+const editBook = (bookJson, bookDiv) => {
+  console.log(`bookJson: ${bookJson}\n bookDiv: ${{bookDiv}}`);
+
+  const _modal = node("div");
+  const _modalInner = node("div");
+  _modalInner.className = "modal";
+
+  _modal.appendChild(_modalInner);
+
+  for (const prop in bookJson) {
+    let _input;
+    if (prop === "id") {
+      continue;
+    }
+    if (prop === "plot") {
+      _input = node("textarea");
+    } else {
+      _input = node("input");
+      _input.setAttribute("type", "text");
+    }
+    _input.id = prop;
+    _input.value = bookJson[prop];
+    _modalInner.appendChild(_input);
+    console.log(`Prop: ${prop} input added`);
+  }
+  const _modalControl = node("div");
+  _modalControl.id = "modalControl";
+
+  const _modalCancel = node("button");
+  _modalCancel.id = "modalCancel";
+  _modalCancel.innerHTML = "Cancel";
+  _modalControl.appendChild(_modalCancel);
+
+  const _modalSave = node("button");
+  _modalSave.id = "modalSave";
+  _modalSave.innerHTML = "Save";
+  _modalControl.appendChild(_modalSave);
+
+
+  _modalInner.appendChild(_modalControl);
+
+  root.appendChild(_modal);
+};
+
 const getTable = (books) => {
   const _app = node("div", "container");
+
 
   const _list = node("ul");
   _list.className = "bookList";
 
-  const _viewBox = node("div", "view-box");
-  _viewBox.className = "bookBox";
+  const _viewBox = node("div", "bookBox");
+
+  const _button = node("button");
 
   for (const book of books) {
     const _li = li();
@@ -76,6 +122,9 @@ const getTable = (books) => {
       const _target = document.getElementById(`article${targetBoxId}`);
       previousListItem = _target;
       _target.classList.add("active");
+      _button.addEventListener("click", function () {
+        editBook(book, _target);
+      });
     });
     _li.appendChild(text(book.name));
     _list.appendChild(_li);
@@ -103,6 +152,11 @@ const getTable = (books) => {
 
     _viewBox.appendChild(_bookPreview);
   }
+  _button.innerHTML = "button";
+  _button.className = "btn btn-edit";
+
+  _viewBox.appendChild(_button);
+
   _app.appendChild(_list);
   _app.appendChild(_viewBox);
   return _app;
