@@ -11,9 +11,13 @@ body {
 
 .container {
     display: flex;
+    height: 100vh;
+    width: 100vw;
 }
 
 .bookList {
+    height: 100vh;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     min-width: 280px;
@@ -27,15 +31,23 @@ body {
 .bookList li:hover {
     background-color: hsla(0, 0%, 95%, 1);
 }
-.bookBox{
+
+.bookBox {
     width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
 }
+
 .bookBox article {
+    display: none;
     padding: 2em;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.bookBox article.active {
+    display: flex;
 }
