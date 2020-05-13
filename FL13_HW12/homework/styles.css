@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: 1px solid hsla(0, 0%, 0%, .05); /*for debug*/
+}
+
+body {
+    font-size: 16px;
+}
+
+.container {
+    display: flex;
+}
+
+.bookList {
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+}
+
+.bookList li {
+    cursor: pointer;
+    padding: 1em;
+}
+
+.bookList li:hover {
+    background-color: hsla(0, 0%, 95%, 1);
+}
+.bookBox{
+    width: 100%;
+}
+.bookBox article {
+    padding: 2em;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
