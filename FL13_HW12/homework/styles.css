@@ -16,66 +16,23 @@ body {
     height: 100vh;
     width: 100vw;
 }
-
-.bookList {
-    height: 100vh;
-    overflow-y: scroll;
+.book-list{
+    width: 40vw;
+    max-width: 600px;
+    min-width: 300px;
+}
+.lightBox{
+    flex: 1;
     display: flex;
-    flex-direction: column;
-    min-width: 280px;
-}
-
-.bookList li {
-    cursor: pointer;
-    padding: 1em;
-}
-
-.bookList li:hover {
-    background-color: hsla(0, 0%, 95%, 1);
-}
-
-.bookBox {
-    width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
-}
-
-.bookBox article {
-    display: none;
-    padding: 4em;
-    width: 100%;
-    min-height: 600px;
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-}
-.bookBox article img{
-    width: 50%;
-    max-width: 300px;
-    object-fit: cover;
-}
-.bookBox article.active {
-    display: flex;
-}
-
-.modal{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: hsla(0,0%,0%,0.7);
+    text-align: center;
 }
-.modal input, .modal textarea{
-    width: 70%;
-    max-width: 900px;
-    padding: .5em;
-    margin: .5em;
+.book-list li{
+    padding: 0.5em 1em;
 }
-.modal textarea{
-    height: 300px;
+#card{
+    visibility: hidden;
+}
+#card.active{
+    visibility: visible;
 }

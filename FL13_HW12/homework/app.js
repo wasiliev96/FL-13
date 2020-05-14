@@ -31,6 +31,7 @@ function App() {
   const _app = document.createElement("div");
   _app.id = "app";
   let _books = books;
+  let _viewActive = false;
 
   function generateSkeleton() {
     const _skeleton = document.createRange().createContextualFragment(`
@@ -50,13 +51,46 @@ function App() {
     root.appendChild(_app);
   }
 
+  function updateCard(bookObj) {
+    const _card = document.getElementById("card");
+    if (!_viewActive) {
+      _card.classList.add("active");
+      _viewActive = true;
+    }
+    const _image = document.getElementById("cardImage");
+    _image.setAttribute("src", bookObj.imageUrl);
+    const _title = document.getElementById("cardTitle");
+    _title.innerText = bookObj.name;
+    const _authors = document.getElementById("cardAuthors");
+    _authors.innerText = bookObj.authors;
+    const _plot = document.getElementById("cardPlot");
+    _plot.innerText = bookObj.plot;
+  };
+
+  function createCardSkeleton() {
+    const _node = document.createRange().createContextualFragment(`
+      <div id="card">
+        <img src="#" id="cardImage" alt="image placeholder">
+        <h2 id="cardTitle"></h2>
+        <p id="cardAuthors"></p>
+        <p id="cardPlot"></p>
+      </div>
+    `);
+    const _cardParent = document.getElementById("bookCard");
+    _cardParent.appendChild(_node);
+  }
+
+
+  function listCLickHandler(listObj) {
+    console.table(listObj);
+    updateCard(listObj);
+  }
+
   function pushList() {
 
     const _bookParent = document.querySelector("#books");
 
-    function listCLickHandler(listObj) {
-      console.table(listObj);
-    }
+
     const createListItem = (item) => {
       const _node = document.createElement("li");
       const _name = document.createTextNode(item.name);
@@ -77,7 +111,8 @@ function App() {
   return {
     generateSkeleton: generateSkeleton,
     pushApp: pushApp,
-    pushList: pushList
+    pushList: pushList, generateSkeleton,
+    createCardSkeleton: createCardSkeleton
   };
 }
 
@@ -85,4 +120,5 @@ const app = new App();
 app.generateSkeleton();
 app.pushApp();
 app.pushList();
+app.createCardSkeleton();
 console.log("done");
