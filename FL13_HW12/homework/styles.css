@@ -7,47 +7,61 @@
 
 body {
     font-size: 16px;
-}
-#root{
     position: relative;
 }
-.container {
+
+#root {
+}
+.container{
     display: flex;
-    height: 100vh;
-    width: 100vw;
 }
-.book-list{
-    width: 40vw;
-    max-width: 600px;
-    min-width: 300px;
-}
-.lightBox{
+.container>*{
     flex: 1;
-    display: flex;
-    justify-content: center;
-    text-align: center;
 }
-.book-list li{
-    padding: 0.5em 1em;
+#books{
+    max-width: 400px;
+}
+#books li {
+    padding: .5em 1em;
     cursor: pointer;
 }
-.book-list li:hover{
-    background-color: hsla(0,0%,90%,1);
-}
-#bookCard{
-    flex: 1;
+
+#books li:hover {
+    background-color: hsla(0, 0%, 95%, 1);
 }
 #card{
-    visibility: hidden;
-    width: 100%;
-    padding: 1em 2em;
+    display: none;
+    padding: 4em;
+    flex-direction: column;
+    align-items: center;
 }
-#card.active{
-    visibility: visible;
+#card img{
+    width: 60%;
+    max-width: 200px;
+    object-fit: cover;
 }
-#card button{
+.buttons{
+    display: flex;
+    align-items: center;
+}
+.buttons button{
     cursor: pointer;
+    flex:1;
     border: none;
-    padding: 1em 3em;
-    background-color: hsla(0,0%,100%,1);
+    padding: 1em;
+}
+.buttons button:hover{
+    background-color: #fff;
+}
+#modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: hsla(0, 0%, 95%, 1);
 }

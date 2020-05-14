@@ -27,85 +27,163 @@ const books = [
   }
 ];
 
+const node = (nodeName) => {
+  return document.createElement(nodeName);
+};
+const nodeClass = (tagName, className) => {
+  const _node = node(tagName);
+  _node.className = className;
+  return _node;
+};
+const nodeId = (tagName, id) => {
+  const _node = node(tagName);
+  _node.id = id;
+  return _node;
+};
+const getId = (id) => {
+  return document.getElementById(id);
+};
+
+
 function App() {
+  let _activeCardId = null;
+  let isPreviewActive = false;
+
+  function setActiveCardId(id) {
+    _activeCardId = id;
+  }
+
   const _app = document.createElement("div");
   _app.id = "app";
   let _books = books;
   let _viewActive = false;
 
-  function generateSkeleton() {
-    const _skeleton = document.createRange().createContextualFragment(`
-      <div class="container">
-        <div class="book-list">
-          <ul id="books"></ul>
-        </div>
-        <div class="lightBox">
-          <div id="bookCard"></div>
-        </div>
-      </div>
-    `);
-    _app.appendChild(_skeleton);
+  function editCard(bookId) {
+    setModal(_books[bookId - 1]);
   }
+
+  function setModal(bookObj) {
+    const _modal = getId("modal");
+    const _bookName = getId("modalName");
+    _bookName.value = bookObj.name;
+    const _bookImage = getId("modalImage");
+    _bookImage.value = bookObj.imageUrl;
+    const _bookAuthors = getId("modalAuthors");
+    _bookAuthors.value = bookObj.authors;
+    const _bookPlot = getId("modalPlot");
+    _bookPlot.innerText = bookObj.plot;
+    _modal.style.display = "flex";
+  }
+
+  function generateSkeleton() {
+//  app
+    const _container = nodeClass("div", "container");
+
+    const _bookList = nodeId("ul", "books");
+    _container.appendChild(_bookList);
+
+    const _lightBox = nodeId("div", "lightBox");
+    _container.appendChild(_lightBox);
+
+    const _card = nodeId("div", "card");
+    _lightBox.appendChild(_card);
+
+    _app.appendChild(_container);
+
+
+    // card
+    const _image = nodeId("img", "cardImage");
+    _image.setAttribute("src", "#");
+    _card.appendChild(_image);
+
+    const _name = nodeId("h2", "cardName");
+    _card.appendChild(_name);
+
+    const _authors = nodeId("p", "cardAuthors");
+    _card.appendChild(_authors);
+
+    const _plot = nodeId("p", "cardPlot");
+    _card.appendChild(_plot);
+
+    const _buttons = nodeClass("div", "buttons");
+    _card.appendChild(_buttons);
+
+    const _editBtn = nodeId("button", "editBtn");
+    _editBtn.innerText = "Edit";
+    _editBtn.addEventListener("click", function () {
+      console.log("edit button");
+      editCard(_activeCardId);
+    });
+    _buttons.appendChild(_editBtn);
+
+    // modal
+    const _modal = nodeId("div", "modal");
+
+    const _modalName = nodeId("input", "modalName");
+
+    const _modalImage = nodeId("input", "modalImage");
+
+    const _modalAuthors = nodeId("input", "modalAuthors");
+
+    const _modalPlot = nodeId("textarea", "modalPlot");
+
+    const _modalButtons = nodeClass("div", "buttons");
+    const _cancelBtn = nodeId("button", "modalCancel");
+    _cancelBtn.innerText = "Cancel";
+    const _saveBtn = nodeId("button", "modalSave");
+    _saveBtn.innerText = "Save";
+    _modalButtons.appendChild(_cancelBtn);
+    _modalButtons.appendChild(_saveBtn);
+
+    _modal.appendChild(_modalName);
+    _modal.appendChild(_modalImage);
+    _modal.appendChild(_modalAuthors);
+    _modal.appendChild(_modalPlot);
+    _modal.appendChild(_modalButtons);
+    document.body.appendChild(_modal);
+
+    function cancelHandler() {
+      _modal.style.display = "none";
+    }
+
+    _cancelBtn.addEventListener("click", cancelHandler), {once: true};
+
+    _saveBtn.addEventListener("click", event => {
+      alert("saved");
+      _modal.style.display = "none";
+    });
+    _modal.style.display = "flex";
+  }
+
 
   function pushApp() {
     root.appendChild(_app);
-  }
-
-  function updateCard(bookObj) {
-    const _card = document.getElementById("card");
-    if (!_viewActive) {
-      _card.classList.add("active");
-      _viewActive = true;
-    }
-    const _image = document.getElementById("cardImage");
-    _image.setAttribute("src", bookObj.imageUrl);
-    const _title = document.getElementById("cardTitle");
-    _title.innerText = bookObj.name;
-    const _authors = document.getElementById("cardAuthors");
-    _authors.innerText = bookObj.authors;
-    const _plot = document.getElementById("cardPlot");
-    _plot.innerText = bookObj.plot;
-
-    const _editBtn = document.getElementById("editBtn");
-    _editBtn.addEventListener("click", event => {
-      alert(`${bookObj.name} edit menu!`);
-    }, {once: true});
-  };
-
-  function createCardSkeleton() {
-    const _node = document.createRange().createContextualFragment(`
-      <div id="card">
-        <img src="#" id="cardImage" alt="image placeholder">
-        <h2 id="cardTitle"></h2>
-        <p id="cardAuthors"></p>
-        <p id="cardPlot"></p>
-        <div class="buttons">
-          <button id="editBtn">Edit</button>
-        </div>
-      </div>
-    `);
-    const _cardParent = document.getElementById("bookCard");
-    _cardParent.appendChild(_node);
-  }
-
-
-  function listCLickHandler(listObj) {
-    console.table(listObj);
-    updateCard(listObj);
   }
 
   function pushList() {
 
     const _bookParent = document.querySelector("#books");
 
+    function updateCard(item) {
+      getId("cardImage").setAttribute("src", item.imageUrl || "#");
+      getId("cardName").innerText = item.name || "Unnamed title";
+      getId("cardAuthors").innerText = item.authors || "Author is unnamed";
+      getId("cardPlot").innerText = item.plot || "Empty...";
+    }
 
     const createListItem = (item) => {
-      const _node = document.createElement("li");
+      const _node = node("li");
       const _name = document.createTextNode(item.name);
       _node.appendChild(_name);
 
       _node.addEventListener("click", function () {
-        listCLickHandler(item);
+        setActiveCardId(item.id);
+        if (!isPreviewActive) {
+          isPreviewActive = true;
+          getId("card").style.display = "flex";
+        }
+        updateCard(item);
+        console.log(`active item id: ${item.id}`);
       });
       return _node;
     };
@@ -119,8 +197,7 @@ function App() {
   return {
     generateSkeleton: generateSkeleton,
     pushApp: pushApp,
-    pushList: pushList,
-    createCardSkeleton: createCardSkeleton
+    pushList: pushList
   };
 }
 
@@ -128,5 +205,4 @@ const app = new App();
 app.generateSkeleton();
 app.pushApp();
 app.pushList();
-app.createCardSkeleton();
 console.log("done");

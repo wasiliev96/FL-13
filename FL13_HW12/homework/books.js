@@ -1,6 +1,6 @@
 // const books = [
 //   {
-//     id: 1,
+//     id: 0,
 //     name: "Unlocking Android",
 //     "authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"],
 //     "imageUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg",
@@ -8,7 +8,7 @@
 //
 //   },
 //   {
-//     id: 2,
+//     id: 1,
 //     name: "Android in Action, Second Edition",
 //     "authors": ["W. Frank Ableson", "Robi Sen"],
 //     "imageUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson2.jpg",
@@ -17,7 +17,7 @@
 //
 //   },
 //   {
-//     id: 3,
+//     id: 2,
 //     name: "Specification by Example",
 //     "authors": ["Gojko Adzic"],
 //     "imageUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/adzic.jpg",
