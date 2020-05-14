@@ -64,7 +64,14 @@ function App() {
 
   const _app = document.createElement('div');
   _app.id = 'app';
-  let _books = books;
+  let _books = JSON.parse(localStorage.getItem('books')) || books;
+
+  window.addEventListener('unload', event => {
+    localStorage.setItem('books', JSON.stringify(_books));
+    console.log('books load to localstorage');
+
+  });
+
 
   function editCard(bookId) {
     setModal(_books[bookId]);
