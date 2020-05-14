@@ -29,10 +29,25 @@ body {
 }
 .book-list li{
     padding: 0.5em 1em;
+    cursor: pointer;
+}
+.book-list li:hover{
+    background-color: hsla(0,0%,90%,1);
+}
+#bookCard{
+    flex: 1;
 }
 #card{
     visibility: hidden;
+    width: 100%;
+    padding: 1em 2em;
 }
 #card.active{
     visibility: visible;
+}
+#card button{
+    cursor: pointer;
+    border: none;
+    padding: 1em 3em;
+    background-color: hsla(0,0%,100%,1);
 }
