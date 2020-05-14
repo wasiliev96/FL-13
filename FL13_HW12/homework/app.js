@@ -27,150 +27,36 @@ const books = [
   }
 ];
 
-let currentBookId = null;
-/**
- *
- * @param name
- * @param className
- * @returns {HTMLElement}
- */
-const node = (name, className) => {
-  const _node = document.createElement(name);
-  if (className) {
-    _node.className = className;
-  }
-  return _node;
-};
-const text = (name) => {
-  return document.createTextNode(name);
-};
-const li = (className) => {
-  const _li = node("li");
-  if (className) {
-    _li.className = className;
-  }
-  return _li;
-};
-
-let previousListItem;
-
-const editBook = (bookJson, bookDiv) => {
-  console.log(`bookJson: ${bookJson}\n bookDiv: ${{bookDiv}}`);
-
-  const _modal = node("div");
-  const _modalInner = node("div");
-  _modalInner.className = "modal";
-
-  _modal.appendChild(_modalInner);
-
-  for (const prop in bookJson) {
-    let _input;
-    if (prop === "id") {
-      continue;
-    }
-    if (prop === "plot") {
-      _input = node("textarea");
-    } else {
-      _input = node("input");
-      _input.setAttribute("type", "text");
-    }
-    _input.id = prop;
-    _input.value = bookJson[prop];
-    _modalInner.appendChild(_input);
-    console.log(`Prop: ${prop} input added`);
-  }
-  const _modalControl = node("div");
-  _modalControl.id = "modalControl";
-
-  const _modalCancel = node("button");
-  _modalCancel.id = "modalCancel";
-  _modalCancel.innerHTML = "Cancel";
-  _modalControl.appendChild(_modalCancel);
-
-  const _modalSave = node("button");
-  _modalSave.id = "modalSave";
-  _modalSave.innerHTML = "Save";
-  _modalControl.appendChild(_modalSave);
-
-
-  _modalInner.appendChild(_modalControl);
-
-  root.appendChild(_modal);
-};
-
-const getTable = (books) => {
-  const _app = node("div", "container");
-
-
-  const _list = node("ul");
-  _list.className = "bookList";
-
-  const _viewBox = node("div", "bookBox");
-
-  const _button = node("button");
-
-  for (const book of books) {
-    const _li = li();
-    _li.id = `book${book.id}`;
-    _li.addEventListener("click", function () {
-      if (previousListItem) {
-        console.log("exist: " + previousListItem.className);
-        previousListItem.classList.remove("active");
-      }
-      console.log(this.id);
-      const targetBoxId = this.id.match(/\d*$/);
-      const _target = document.getElementById(`article${targetBoxId}`);
-      previousListItem = _target;
-      _target.classList.add("active");
-      _button.addEventListener("click", function () {
-        editBook(book, _target);
-      });
-    });
-    _li.appendChild(text(book.name));
-    _list.appendChild(_li);
-
-    const _bookPreview = node("article");
-    _bookPreview.id = `article${book.id}`;
-    _bookPreview.className = "bookPreview";
-
-    const bookName = node("h1");
-    bookName.appendChild(text(book.name));
-
-    const bookImage = document.createElement("img");
-    bookImage.setAttribute("src", book.imageUrl);
-
-    const bookAuthors = node("em");
-    bookAuthors.appendChild(text(book.authors));
-
-    const plot = node("p");
-    plot.appendChild(text(book.plot || "No description"));
-
-    _bookPreview.appendChild(bookImage);
-    _bookPreview.appendChild(bookName);
-    _bookPreview.appendChild(bookAuthors);
-    _bookPreview.appendChild(plot);
-
-    _viewBox.appendChild(_bookPreview);
-  }
-  _button.innerHTML = "button";
-  _button.className = "btn btn-edit";
-
-  _viewBox.appendChild(_button);
-
-  _app.appendChild(_list);
-  _app.appendChild(_viewBox);
-  return _app;
-};
-
 function App() {
-  const build = () => {
-    const _app = getTable(books);
+  const _app = document.createElement("div");
+  _app.id = "app";
+  let _books = books;
+
+  function generateSkeleton() {
+    const _skeleton = document.createRange().createContextualFragment(`
+      <div class="container">
+        <div class="book-list">
+          <ul id="books"></ul>
+        </div>
+        <div class="lightBox">
+          <div id="bookCard"></div>
+        </div>
+      </div>
+    `);
+    _app.appendChild(_skeleton);
+  }
+
+  function pushApp() {
     root.appendChild(_app);
-  };
+  }
+
   return {
-    build: build
+    generateSkeleton: generateSkeleton,
+    push: pushApp
   };
 }
 
 const app = new App();
-app.build();
+app.generateSkeleton();
+app.push();
+console.log("done");
