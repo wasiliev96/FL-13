@@ -50,13 +50,39 @@ function App() {
     root.appendChild(_app);
   }
 
+  function pushList() {
+
+    const _bookParent = document.querySelector("#books");
+
+    function listCLickHandler(listObj) {
+      console.table(listObj);
+    }
+    const createListItem = (item) => {
+      const _node = document.createElement("li");
+      const _name = document.createTextNode(item.name);
+      _node.appendChild(_name);
+
+      _node.addEventListener("click", function () {
+        listCLickHandler(item);
+      });
+      return _node;
+    };
+
+    for (const book of _books) {
+      const _item = createListItem(book);
+      _bookParent.appendChild(_item);
+    }
+  }
+
   return {
     generateSkeleton: generateSkeleton,
-    push: pushApp
+    pushApp: pushApp,
+    pushList: pushList
   };
 }
 
 const app = new App();
 app.generateSkeleton();
-app.push();
+app.pushApp();
+app.pushList();
 console.log("done");
