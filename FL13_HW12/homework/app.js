@@ -67,7 +67,7 @@ function App() {
   let _books = books;
 
   function editCard(bookId) {
-    setModal(_books[bookId - 1]);
+    setModal(_books[bookId]);
   }
 
   function setModal(bookObj) {
