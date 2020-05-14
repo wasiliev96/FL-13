@@ -2,7 +2,7 @@ const root = document.getElementById('root');
 
 const books = [
   {
-    id: 1,
+    id: 0,
     name: 'Unlocking Android',
     'authors': ['W. Frank Ableson', 'Charlie Collins', 'Robi Sen'],
     'imageUrl': 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg',
@@ -13,7 +13,7 @@ const books = [
 
   },
   {
-    id: 2,
+    id: 1,
     name: 'Android in Action, Second Edition',
     'authors': ['W. Frank Ableson', 'Robi Sen'],
     'imageUrl': 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson2.jpg',
@@ -26,7 +26,7 @@ const books = [
 
   },
   {
-    id: 3,
+    id: 2,
     name: 'Specification by Example',
     'authors': ['Gojko Adzic'],
     'imageUrl': 'https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/adzic.jpg',
@@ -158,28 +158,21 @@ function App() {
 
     _saveBtn.addEventListener('click', () => {
       _userBook.id = _activeCardId;
-      _userBook.name = _modalName.value;
+      _userBook.name = _modalName.value || 'No name';
       _userBook.imageUrl = _modalImage.value;
       _userBook.authors = _modalAuthors.value;
       _userBook.plot = _modalPlot.value;
-      let _isEmpty = true;
-      for (const prop in _userBook) {
-        if (_userBook[prop] != null && _userBook[prop].length > 0) {
-          _isEmpty = false;
-          return;
-        }
-      }
-      if (!_isEmpty) {
-        _books[_activeCardId] = _userBook;
-        console.log(_books[_activeCardId]);
-        const relativeLi = getId(`listItem${_activeCardId}`);
-        relativeLi.innerText = _userBook.name;
-        alert('saved');
-        updateCard(_books[_activeCardId]);
-        _userBook = {};
-      } else {
+      _books[_activeCardId] = _userBook;
+      console.log(_books[_activeCardId]);
+      const relativeLi = getId(`listItem${_activeCardId}`);
+      relativeLi.innerText = _userBook.name;
+
+      if (!_userBook) {
         alert('Book cannot be empty!');
       }
+      _userBook = {};
+      alert('saved');
+      updateCard(_books[_activeCardId]);
       _modal.style.display = 'none';
     });
     _modal.style.display = 'flex';
@@ -222,7 +215,7 @@ function App() {
           isPreviewActive = true;
           getId('card').style.display = 'flex';
         }
-        updateCard(item);
+        updateCard(_books[item.id]);
         console.log(
           `active item id: ${item.id}`
         );
