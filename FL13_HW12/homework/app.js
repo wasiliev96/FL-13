@@ -48,6 +48,8 @@ const getId = (id) => {
 function App() {
   let _activeCardId = null;
   let isPreviewActive = false;
+  let _userBook = {};
+  let _previousListItem = null;
 
   function setActiveCardId(id) {
     _activeCardId = id;
@@ -149,7 +151,22 @@ function App() {
     _cancelBtn.addEventListener("click", cancelHandler), {once: true};
 
     _saveBtn.addEventListener("click", event => {
+      _userBook.id = _activeCardId;
+      _userBook.name = _modalName.value;
+      _userBook.imageUrl = _modalImage.value;
+      _userBook.authors = _modalAuthors.value;
+      _userBook.plot = _modalPlot.value;
+      _books[_activeCardId] = _userBook;
+      console.log(_books[_activeCardId]);
+      const relativeLi = getId(`listItem${_activeCardId}`);
+      relativeLi.innerText = _userBook.name;
+
+      if (!_userBook) {
+        alert("Book cannot be empty!");
+      }
+      _userBook = {};
       alert("saved");
+      updateCard(_books[_activeCardId]);
       _modal.style.display = "none";
     });
     _modal.style.display = "flex";
@@ -160,30 +177,42 @@ function App() {
     root.appendChild(_app);
   }
 
+  function updateCard(item) {
+    getId("cardImage").setAttribute("src", item.imageUrl || "#");
+    getId("cardName").innerText = item.name || "Unnamed title";
+    getId("cardAuthors").innerText = item.authors || "Author is unnamed";
+    getId("cardPlot").innerText = item.plot || "Empty...";
+  }
+
   function pushList() {
 
     const _bookParent = document.querySelector("#books");
 
-    function updateCard(item) {
-      getId("cardImage").setAttribute("src", item.imageUrl || "#");
-      getId("cardName").innerText = item.name || "Unnamed title";
-      getId("cardAuthors").innerText = item.authors || "Author is unnamed";
-      getId("cardPlot").innerText = item.plot || "Empty...";
-    }
 
     const createListItem = (item) => {
       const _node = node("li");
+      _node.id = `listItem${item.id}`
+      ;
       const _name = document.createTextNode(item.name);
       _node.appendChild(_name);
 
       _node.addEventListener("click", function () {
+        if (!_previousListItem) {
+          _previousListItem = _node;
+        } else {
+          _previousListItem.classList.remove("active");
+          _previousListItem = _node;
+        }
+        _node.classList.add("active");
         setActiveCardId(item.id);
         if (!isPreviewActive) {
           isPreviewActive = true;
           getId("card").style.display = "flex";
         }
         updateCard(item);
-        console.log(`active item id: ${item.id}`);
+        console.log(
+          `active item id: ${item.id}`
+        );
       });
       return _node;
     };

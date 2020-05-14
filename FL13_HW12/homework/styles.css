@@ -12,47 +12,57 @@ body {
 
 #root {
 }
-.container{
+
+.container {
     display: flex;
 }
-.container>*{
+
+.container > * {
     flex: 1;
 }
-#books{
+
+#books {
     max-width: 400px;
 }
+
 #books li {
     padding: .5em 1em;
     cursor: pointer;
 }
 
-#books li:hover {
+#books li:hover, #books li.active {
     background-color: hsla(0, 0%, 95%, 1);
 }
-#card{
+
+#card {
     display: none;
     padding: 4em;
     flex-direction: column;
     align-items: center;
 }
-#card img{
+
+#card img {
     width: 60%;
     max-width: 200px;
     object-fit: cover;
 }
-.buttons{
+
+.buttons {
     display: flex;
     align-items: center;
 }
-.buttons button{
+
+.buttons button {
     cursor: pointer;
-    flex:1;
+    flex: 1;
     border: none;
     padding: 1em;
 }
-.buttons button:hover{
+
+.buttons button:hover {
     background-color: #fff;
 }
+
 #modal {
     position: absolute;
     top: 0;
