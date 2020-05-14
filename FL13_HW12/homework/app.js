@@ -65,6 +65,11 @@ function App() {
     _authors.innerText = bookObj.authors;
     const _plot = document.getElementById("cardPlot");
     _plot.innerText = bookObj.plot;
+
+    const _editBtn = document.getElementById("editBtn");
+    _editBtn.addEventListener("click", event => {
+      alert(`${bookObj.name} edit menu!`);
+    }, {once: true});
   };
 
   function createCardSkeleton() {
@@ -74,6 +79,9 @@ function App() {
         <h2 id="cardTitle"></h2>
         <p id="cardAuthors"></p>
         <p id="cardPlot"></p>
+        <div class="buttons">
+          <button id="editBtn">Edit</button>
+        </div>
       </div>
     `);
     const _cardParent = document.getElementById("bookCard");
@@ -111,7 +119,7 @@ function App() {
   return {
     generateSkeleton: generateSkeleton,
     pushApp: pushApp,
-    pushList: pushList, generateSkeleton,
+    pushList: pushList,
     createCardSkeleton: createCardSkeleton
   };
 }
