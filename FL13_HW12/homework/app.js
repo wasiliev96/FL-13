@@ -172,8 +172,18 @@ function updatePreview() {
       break;
   }
 }
-
+let currentTargetLi = null;
 function linkHandler(e) {
+  console.log('clicked');
+
+  if (currentTargetLi) {
+    currentTargetLi.classList.remove('active');
+    currentTargetLi = e.target.parentNode;
+    console.log('linkHandler -> currentTargetLi', currentTargetLi);
+    currentTargetLi.classList.add('active');
+  } else {
+    currentTargetLi = e.target.parentNode;
+  }
   e.preventDefault();
   let state = {
     page: e.target.href
@@ -242,7 +252,14 @@ function validateEditInput() {
 
 function edit(event) {
   addBookBtn.disabled = true;
-
+  if (currentTargetLi) {
+    currentTargetLi.classList.remove('active');
+    currentTargetLi = event.target.parentNode;
+    console.log('linkHandler -> currentTargetLi', currentTargetLi);
+    currentTargetLi.classList.add('active');
+  } else {
+    currentTargetLi = event.target.parentNode;
+  }
   const bookId = +event.target.previousElementSibling.href.match(/\d*$/)[0];
   console.log('edit -> bookId', bookId);
   const book = booksLibrary[bookId];
