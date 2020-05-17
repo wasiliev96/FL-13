@@ -1,77 +1,144 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    outline: 1px solid hsla(0, 0%, 0%, .05); /*for debug*/
-}
-
 body {
-    font-size: 16px;
     position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* overflow: hidden; */
+    line-height: 1.5;
 }
-
 #root {
-}
-
-.container {
     display: flex;
-}
-
-.container > * {
-    flex: 1;
-}
-
-#books {
-    max-width: 400px;
-}
-
-#books li {
-    padding: .5em 1em;
-    cursor: pointer;
-}
-
-#books li:hover, #books li.active {
-    background-color: hsla(0, 0%, 95%, 1);
-}
-
-#card {
-    display: none;
-    padding: 4em;
-    flex-direction: column;
-    align-items: center;
-}
-
-#card img {
-    width: 60%;
-    max-width: 200px;
-    object-fit: cover;
-}
-
-.buttons {
-    display: flex;
-    align-items: center;
-}
-
-.buttons button {
-    cursor: pointer;
-    flex: 1;
-    border: none;
-    padding: 1em;
-}
-
-.buttons button:hover {
-    background-color: #fff;
-}
-
-#modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
     width: 100vw;
     height: 100vh;
+}
+#root > div {
+    flex: 1;
+}
+ul {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+button {
+    display: inline-block;
+    border: none;
+    padding: 1em 3em;
+    width: 100%;
+    cursor: pointer;
+    border-top: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-radius: 4px;
+}
+button:hover {
+    border-color: hsl(0, 0%, 80%);
+}
+button:focus {
+    outline: none;
+    border-color: hsl(0, 0%, 10%);
+}
+#previewBox {
+    padding: 3em;
+}
+#preview,
+#editView {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: hsla(0, 0%, 95%, 1);
+    /* justify-content: center; */
+}
+#preview.hidden,
+#editView.hidden,
+#add.hidden {
+    display: none;
+}
+#books li {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 60px;
+    cursor: pointer;
+    list-style-type: none;
+    border-bottom: 1px solid hsl(0, 0%, 95%);
+}
+#books li a:hover {
+    border-color: hsla(0, 0%, 80%);
+}
+#books li a:focus {
+    border-color: hsla(0, 0%, 10%);
+}
+#books a {
+    border-radius: 4px;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    border-right: transparent;
+    flex: 1;
+    line-height: 60px;
+    padding-right: 1em;
+    padding-left: 1em;
+    margin-right: 2px;
+    color: hsl(0, 0%, 20%);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+#books button {
+    min-width: 60px;
+    background-color: #ffffff;
+    width: auto;
+}
+#preview p,
+#editView p {
+    width: 80%;
+}
+#preview img {
+    object-fit: cover;
+    width: 200px;
+    height: auto;
+}
+#authors {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.2em;
+    color: hsl(0, 0%, 50%);
+}
+#authors:before,
+#content:after {
+    content: '|';
+    color: hsl(0, 0%, 80%);
+}
+#plot {
+    text-indent: 1em;
+    hyphens: auto;
+}
+#editView label,
+#add label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#editView input,
+#editView textarea,
+#add input,
+#add textarea {
+    width: 50%;
+    margin: 0.5em 1em 0.5em auto;
+}
+textarea {
+    min-height: 100px;
+    min-width: 300px;
+    padding: 1em;
+    text-indent: 1em;
+}
+.edit-control {
+    display: flex;
+    width: 100%;
 }
