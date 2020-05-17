@@ -184,7 +184,7 @@ function linkHandler(e) {
   console.log(`state page: ${state.page}`);
 
   history.pushState(state, '', state.page + '#preview');
-  //   console.log(+state.page.match(/\d*$/)[0]);
+
   setActiveView(preview);
   updatePreview();
   console.log(`book id: ${+location.search.match(/\d*$/)}`);
@@ -194,18 +194,8 @@ window.addEventListener('popstate', function () {
   updatePreview();
 });
 
-// window.onbeforeunload = function () {
-//   if (unloadWarning) {
-//     return `You have made changes on this page that you have not yet
-// confirmed. If you navigate away from this page you will lose your unsaved
-// changes`; } };
-
 window.onunload = function () {
-  // const localPath = location.pathname || '';
-  // localStorage.setItem('urlData', localPath);
-  // localStorage.setItem('state', history.state || '');
   localStorage.setItem('books', JSON.stringify(booksLibrary));
-  // location = location.origin;
 };
 
 function updateSearch(book) {
@@ -217,7 +207,6 @@ function updateSearch(book) {
 }
 
 window.onload = function () {
-  // const hash = location.hash;
   const UNWANTED_HASH_CHARS_LENGTH = 4;
   let searchId = location.search.slice(UNWANTED_HASH_CHARS_LENGTH) || null;
   console.log('window.onload -> searchId ', searchId);
@@ -330,7 +319,6 @@ const cancelBtns = document.getElementsByClassName('cancel-btn');
     }
   });
 
-  //?Fix
   return 0;
 });
 
