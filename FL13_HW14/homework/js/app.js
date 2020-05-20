@@ -1,96 +1,62 @@
 // Your code goes here
+
 //@ts-check
 /**
  *
- * @param {string} name
- * @param {string} email
  * @constructor
- * @return {{getName: (function(): string), getEmail: (function(): string),
- *   addHomeWorkResult: addHomeWorkResult}}
+ * @return {{getHomeworkResults: getHomeworkResults, getName: (function():
+ *   void), getEmail: (function(): void), addHomeWorkResult:
+ *   addHomeWorkResult}}
+ * @param inputName
+ * @param inputEmail
  */
-function Student(name, email) {
-  const _name = name;
-  const _email = email;
-  const _homeworkResults = [];
+function Student(inputName, inputEmail) {
+  const name = inputName;
+  const email = inputEmail;
+  const homeworkResults = [];
 
-  const getName = () => _name;
-  const getEmail = () => _email;
+  const getName = () => name;
+  const getEmail = () => email;
   /**
    *
    * @param {string} topic
    * @param {boolean} success
    */
-  const addHomeWorkResult = (topic, success) => {
-    _homeworkResults.push({topic, success});
+  const addHomeworkResult = (topic, success) => {
+    homeworkResults.push({topic, success});
   };
   const getHomeworkResults = () => {
-    console.log(_homeworkResults);
+    console.log(homeworkResults);
   };
   return {
     getName: getName,
     getEmail: getEmail,
-    addHomeWorkResult: addHomeWorkResult,
+    addHomeworkResult: addHomeworkResult,
     getHomeworkResults: getHomeworkResults
   };
 }
 
-/**
- *
- * @param {array} students
- * @param {number} failedLimit
- * @returns {{printStudentsList: printStudentsList}}
- * @constructor
- */
 function FrontendLab(students, failedLimit) {
-  let _failedHomeworksLimit = failedLimit;
-  const _studentsList = students;
-  const _homeworkResults = [];
+  let failedHomeworksLimit = failedLimit;
 
-  const printStudentsList = () => {
-    _studentsList.forEach((student) => {
-      console.log(`name: ${student.name}, email: ${student.email}`);
-      const studentResults = [];
-      _homeworkResults.forEach((homeworkResult) => {
-        const record = {};
-        record.topic = homeworkResult.topic;
-        record.success = homeworkResult.results.find(
-          (result) => result.email === student.email
-        );
-        studentResults.push(record);
-      });
-      console.log(studentResults);
+  const studentsList = students.map((student) => new Student(student.name, student.email));
+
+  const addHomeworkResults = (homeworkResults) => {
+    // Student.apply(studentsList[0], studentsList[0].name,
+    // studentsList[0].email).getHomeworkResults(); work!
+    homeworkResults.results.forEach((result) => {
+      const student = studentsList.find(student => student.getEmail() === result.email);
+      student.addHomeworkResult(homeworkResults.topic, result.success);
     });
   };
-
-  /**
-   *
-   * @param {{string:topic}, [{email: string, success:boolean}]} homeworkResults
-   */
-  const addHomeworkResults = (homeworkResults) => {
-    _homeworkResults.push(homeworkResults);
-  };
-
-  const printStudentsEligibleForTest = () => {
-    _studentsList.forEach((studentRecord) => {
-      let studentFailsCounter = 0;
-      _homeworkResults.forEach((homeworkRecord) => {
-        const records = homeworkRecord.results.filter((result) => {
-          return result.email === studentRecord.email;
-        });
-        records.forEach((record) => {
-          record.success || studentFailsCounter++;
-        });
-      });
-      if (studentFailsCounter < _failedHomeworksLimit) {
-        console.log(
-          `name: ${studentRecord.name}, email: ${studentRecord.email}, counter: ${studentFailsCounter}`
-        );
-      }
+  const printStudentsList = () => {
+    studentsList.forEach(student => {
+      console.log(`name: ${student.getName()}, email: ${student.getEmail()}`);
+      console.log(student.getHomeworkResults());
     });
   };
   return {
     printStudentsList: printStudentsList,
-    addHomeworkResults: addHomeworkResults,
-    printStudentsEligibleForTest: printStudentsEligibleForTest
+    addHomeworkResults: addHomeworkResults
   };
 }
