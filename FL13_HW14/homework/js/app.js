@@ -21,7 +21,7 @@ function Student(name, email) {
    * @param {boolean} success
    */
   const addHomeWorkResult = (topic, success) => {
-    _homeworkResults.push({ topic, success });
+    _homeworkResults.push({topic, success});
   };
   const getHomeworkResults = () => {
     console.log(_homeworkResults);
@@ -30,7 +30,7 @@ function Student(name, email) {
     getName: getName,
     getEmail: getEmail,
     addHomeWorkResult: addHomeWorkResult,
-    getHomeworkResults: getHomeworkResults,
+    getHomeworkResults: getHomeworkResults
   };
 }
 
@@ -47,10 +47,10 @@ function FrontendLab(students, failedLimit) {
   const _homeworkResults = [];
 
   const printStudentsList = () => {
-    _studentsList.map((student) => {
+    _studentsList.forEach((student) => {
       console.log(`name: ${student.name}, email: ${student.email}`);
       const studentResults = [];
-      _homeworkResults.map((homeworkResult) => {
+      _homeworkResults.forEach((homeworkResult) => {
         const record = {};
         record.topic = homeworkResult.topic;
         record.success = homeworkResult.results.find(
@@ -81,7 +81,7 @@ function FrontendLab(students, failedLimit) {
           record.success || studentFailsCounter++;
         });
       });
-      if (studentFailsCounter < failedLimit) {
+      if (studentFailsCounter < _failedHomeworksLimit) {
         console.log(
           `name: ${studentRecord.name}, email: ${studentRecord.email}, counter: ${studentFailsCounter}`
         );
@@ -91,6 +91,6 @@ function FrontendLab(students, failedLimit) {
   return {
     printStudentsList: printStudentsList,
     addHomeworkResults: addHomeworkResults,
-    printStudentsEligibleForTest: printStudentsEligibleForTest,
+    printStudentsEligibleForTest: printStudentsEligibleForTest
   };
 }
