@@ -1,15 +1,3 @@
-// Your code goes here
-
-//@ts-check
-/**
- *
- * @constructor
- * @return {{getHomeworkResults: getHomeworkResults, getName: (function():
- *   void), getEmail: (function(): void), addHomeWorkResult:
- *   addHomeWorkResult}}
- * @param inputName
- * @param inputEmail
- */
 function Student(inputName, inputEmail) {
   const name = inputName;
   const email = inputEmail;
@@ -17,16 +5,12 @@ function Student(inputName, inputEmail) {
 
   const getName = () => name;
   const getEmail = () => email;
-  /**
-   *
-   * @param {string} topic
-   * @param {boolean} success
-   */
+
   const addHomeworkResult = (topic, success) => {
     homeworkResults.push({topic, success});
   };
   const getHomeworkResults = () => {
-    console.log(homeworkResults);
+    return homeworkResults;
   };
   return {
     getName: getName,
@@ -42,8 +26,6 @@ function FrontendLab(students, failedLimit) {
   const studentsList = students.map((student) => new Student(student.name, student.email));
 
   const addHomeworkResults = (homeworkResults) => {
-    // Student.apply(studentsList[0], studentsList[0].name,
-    // studentsList[0].email).getHomeworkResults(); work!
     homeworkResults.results.forEach((result) => {
       const student = studentsList.find(student => student.getEmail() === result.email);
       student.addHomeworkResult(homeworkResults.topic, result.success);
@@ -55,8 +37,22 @@ function FrontendLab(students, failedLimit) {
       console.log(student.getHomeworkResults());
     });
   };
+  const printStudentsEligibleForTest = () => {
+    studentsList.forEach(student => {
+      let failCounter = 0;
+      student.getHomeworkResults().forEach((result) => {
+        if (!result.success) {
+          failCounter++;
+        }
+      });
+      if (failCounter < failedHomeworksLimit) {
+        console.log(`name: ${student.getName()}, email: ${student.getEmail()}`);
+      }
+    });
+  };
   return {
     printStudentsList: printStudentsList,
-    addHomeworkResults: addHomeworkResults
+    addHomeworkResults: addHomeworkResults,
+    printStudentsEligibleForTest: printStudentsEligibleForTest
   };
 }
