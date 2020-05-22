@@ -12,7 +12,7 @@ function Vehicle(color, engine) {
 Vehicle.prototype.getInfo = function () {
   const answer = {};
   for (const key in this) {
-    if (typeof this[key] != 'function') {
+    if (typeof this[key] !== 'function') {
       answer[key] = this[key];
     }
   }
@@ -26,6 +26,7 @@ Vehicle.prototype.upgradeEngine = function (newEngine, maxSpeed) {
 };
 
 Vehicle.prototype.drive = function () {
+  const SPEED_STEP = 2000;
   if (!this.move) {
     this.move = true;
     clearInterval(this.brakeInterval);
@@ -37,12 +38,14 @@ Vehicle.prototype.drive = function () {
       }
       console.log(this.currentSpeed);
       this.currentSpeed += 20;
-    }, 2000);
+    }, SPEED_STEP);
   }
 };
-Vehicle.prototype.speedHandler = function (speed) {
+Vehicle.prototype.speedHandler = function () {
+  return;
 };
 Vehicle.prototype.stop = function () {
+  const BREAK_STEP = 1500;
   if (!this.move) {
     console.log(`Already slows down`);
     return;
@@ -59,7 +62,7 @@ Vehicle.prototype.stop = function () {
     } else {
       console.log(this.currentSpeed);
     }
-  }, 1500);
+  }, BREAK_STEP);
 };
 Vehicle.prototype.stopMessage = function (maxSpeed) {
   console.log(`Vehicle is stopped. Maximum speed during the drive was ${maxSpeed}`);
@@ -95,15 +98,13 @@ function Motorcycle(model, color, engine) {
 
 Motorcycle.prototype = Object.create(Vehicle.prototype);
 Motorcycle.prototype.speedHandler = function (speed) {
-  if (speed >= this.maxSpeed + 30) {
+  const OVERHEAT_LEVEL = 30;
+  if (speed >= this.maxSpeed + OVERHEAT_LEVEL) {
     console.log(`Engine overheating`);
     clearInterval(this.runInterval);
     this.stop();
   }
 };
-Motorcycle.prototype.stopMessage = function (maxSpeed) {
+Motorcycle.prototype.stopMessage = function () {
   console.log(`Motorcycle ${this.model} is stopped. Good drive`);
 };
-// Debug zone ☣;
-const moto = new Car('H&D', 'black', 'V8');
-moto.drive();
