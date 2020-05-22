@@ -20,9 +20,9 @@ function assign(target, letArgs) {
   }
   return to;
 }
-
-const paymentCard = { cash: "100$" };
-const creditCard = { creditLimit: "50$", cash: "100$" };
-const universalCard = assign({}, creditCard, paymentCard); //=>{creditLimit:'50$',
-// 'cash:100$'}
-console.log(universalCard);
+//
+// const paymentCard = { cash: "100$" };
+// const creditCard = { creditLimit: "50$", cash: "100$" };
+// const universalCard = assign({}, creditCard, paymentCard); //=>{creditLimit:'50$',
+// // 'cash:100$'}
+// console.log(universalCard);
