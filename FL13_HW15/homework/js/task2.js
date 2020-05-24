@@ -74,6 +74,7 @@ function Car(model, color, engine) {
   this.color = color;
   this.model = model;
   this.engine = engine;
+  this.maxSpeed = 80;
 }
 
 Car.prototype = Object.create(Vehicle.prototype);
@@ -94,6 +95,7 @@ function Motorcycle(model, color, engine) {
   this.model = model;
   this.color = color;
   this.engine = engine;
+  this.maxSpeed = 90;
 }
 
 Motorcycle.prototype = Object.create(Vehicle.prototype);
