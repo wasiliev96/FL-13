@@ -1,1 +1,70 @@
 /* Your code goes here */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+#app-container {
+  padding: 1em;
+  max-width: 900px;
+  margin: 0 auto;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+a,
+button {
+  cursor: pointer;
+}
+.addGroup {
+  display: flex;
+}
+.addGroup label,
+.addGroup button {
+  flex: 1;
+}
+.addGroup button {
+  max-width: 200px;
+}
+.addGroup input {
+  display: block;
+  padding: 0.9em;
+  width: 100%;
+}
+#usersList li {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid hsl(0, 0%, 60%);
+  align-items: stretch;
+  margin-top: -1px;
+}
+#usersList li div:not(:last-child) {
+  flex: 1;
+  border-right: 1px solid hsl(0, 0%, 60%);
+  padding: 0.9em;
+}
+#usersList li:hover {
+  background-color: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 90%);
+}
+.buttonsGroup {
+  display: flex;
+  min-width: 120px;
+}
+.buttonsGroup button {
+  flex: 1;
+  border: none;
+}
+.buttonsGroup button:first-child {
+  border-right: 1px solid hsl(0, 0%, 60%);
+}
+.buttonsGroup button:hover {
+  background-color: hsl(0, 0%, 80%);
+}
+.buttonsGroup button:active {
+  background-color: hsl(0, 0%, 30%);
+  color: hsl(0, 0%, 90%);
+}
