@@ -42,9 +42,24 @@ function updateItem(id, name, username) {
   xhr.open("PUT", `${baseUrl}/users/${id}`, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify({ name: name, username: username }));
+  console.log(xhr.status);
   xhr.onload = () => {
-    if (xhr.response === 204) {
+    if (xhr.status === 204) {
       console.log("item updated");
+    }
+  };
+}
+
+function deleteItem(id) {
+  console.log(id);
+  xhr.open("DELETE", `${baseUrl}/users/${id}`, true);
+  xhr.setRequestHeader("Authorization", "admin");
+  xhr.send();
+  xhr.onload = () => {
+    console.log(xhr.status);
+    if (xhr.status === 204) {
+      console.log("item deleted");
+      updateList();
     }
   };
 }
@@ -81,6 +96,10 @@ function fillTable(data) {
     });
     _buttonsGroup.appendChild(btnUpdate);
     const btnDelete = createNode("button", "delete", null, "Delete");
+    btnDelete.addEventListener("click", function (e) {
+      const id = e.target.parentElement.dataset.id;
+      deleteItem(id);
+    });
     _buttonsGroup.appendChild(btnDelete);
 
     _li.appendChild(_buttonsGroup);
