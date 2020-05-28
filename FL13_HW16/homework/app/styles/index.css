@@ -34,17 +34,23 @@ button {
   padding: 0.9em;
   width: 100%;
 }
+#usersList li div.user-id {
+  min-width: 80px;
+}
 #usersList li {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border: 1px solid hsl(0, 0%, 60%);
   align-items: stretch;
   margin-top: -1px;
 }
-#usersList li div:not(:last-child) {
+#usersList div:not(:last-child) {
   flex: 1;
   border-right: 1px solid hsl(0, 0%, 60%);
   padding: 0.9em;
+}
+#usersList input {
+  width: 100%;
 }
 #usersList li:hover {
   background-color: hsl(0, 0%, 30%);
@@ -52,7 +58,9 @@ button {
 }
 .buttonsGroup {
   display: flex;
-  min-width: 120px;
+  align-items: stretch;
+  justify-content: stretch;
+  width: 120px;
 }
 .buttonsGroup button {
   flex: 1;

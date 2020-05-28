@@ -46,9 +46,17 @@ function fillTable(data) {
     const _li = createNode("li");
     const userId = createNode("div", "user-id", null, user.id);
     _li.appendChild(userId);
-    const uname = createNode("div", "name", null, user.name);
+    const uname = createNode("input", "name", null);
+    uname.setAttribute("type", "text");
+    uname.setAttribute("placeholder", user.name);
+    uname.setAttribute("disabled", true);
     _li.appendChild(uname);
-    const username = createNode("div", "username", null, user.username);
+    const username = createNode("input", "username", null);
+    username.setAttribute("type", "text");
+    username.setAttribute("placeholder", user.username);
+    username.setAttribute("disabled", true);
+    _li.appendChild(username);
+
     _li.appendChild(username);
     const _buttonsGroup = createNode("div", "buttonsGroup", null);
 
