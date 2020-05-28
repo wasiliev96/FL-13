@@ -1,6 +1,9 @@
 const baseUrl = "http://localhost:3000";
 const appContainer = document.getElementById("app-container");
 const usersList = document.getElementById("usersList");
+const addUserBtn = document.getElementById("addUser");
+const nameField = document.getElementById("name");
+const usernameField = document.getElementById("username");
 // Your code goes here
 usersList.innerText = "Loading...";
 function createNode(
@@ -24,21 +27,16 @@ function createNode(
 
 const xhr = new XMLHttpRequest();
 
-xhr.open("GET", `${baseUrl}/users`, true);
-
-xhr.send(); // (1)
-
-xhr.onreadystatechange = function () {
-  // (3)
-  if (xhr.readyState !== 4) return;
-
-  if (xhr.status !== 200) {
-    alert(xhr.status + ": " + xhr.statusText);
-  } else {
-    //main treat
-    fillTable(JSON.parse(xhr.responseText));
-  }
-};
+function updateList() {
+  xhr.open("GET", `${baseUrl}/users`, true);
+  xhr.send();
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      fillTable(JSON.parse(xhr.responseText));
+    }
+  };
+}
+updateList();
 
 function fillTable(data) {
   const container = document.createDocumentFragment();
@@ -69,3 +67,14 @@ function fillTable(data) {
   usersList.innerText = "";
   usersList.appendChild(container);
 }
+
+addUserBtn.addEventListener("click", function () {
+  xhr.open("POST", `${baseUrl}/users`, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(
+    JSON.stringify({ name: nameField.value, username: usernameField.value })
+  );
+  xhr.onload = () => {
+    updateList();
+  };
+});
