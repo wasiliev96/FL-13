@@ -38,6 +38,17 @@ function updateList() {
 }
 updateList();
 
+function updateItem(id, name, username) {
+  xhr.open("PUT", `${baseUrl}/users/${id}`, true);
+  xhr.setRequestHeader("Content-type", "application/json");
+  xhr.send(JSON.stringify({ name: name, username: username }));
+  xhr.onload = () => {
+    if (xhr.response === 204) {
+      console.log("item updated");
+    }
+  };
+}
+
 function fillTable(data) {
   const container = document.createDocumentFragment();
   for (let user of data) {
@@ -55,8 +66,19 @@ function fillTable(data) {
 
     _li.appendChild(username);
     const _buttonsGroup = createNode("div", "buttonsGroup", null);
+    _buttonsGroup.setAttribute("data-id", user.id);
 
     const btnUpdate = createNode("button", "update", null, "Update");
+    btnUpdate.addEventListener("click", function (e) {
+      const id = e.target.parentElement.dataset.id;
+      const name = e.target.parentElement.parentElement.getElementsByClassName(
+        "name"
+      )[0].value;
+      const username = e.target.parentElement.parentElement.getElementsByClassName(
+        "username"
+      )[0].value;
+      updateItem(id, name, username);
+    });
     _buttonsGroup.appendChild(btnUpdate);
     const btnDelete = createNode("button", "delete", null, "Delete");
     _buttonsGroup.appendChild(btnDelete);
