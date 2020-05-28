@@ -38,7 +38,8 @@ function updateList() {
 }
 updateList();
 
-function updateItem(id, name, username) {
+function updateItem(id, name, username, callTarget) {
+  callTarget.disabled = true;
   xhr.open("PUT", `${baseUrl}/users/${id}`, true);
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify({ name: name, username: username }));
@@ -46,11 +47,13 @@ function updateItem(id, name, username) {
   xhr.onload = () => {
     if (xhr.status === 204) {
       console.log("item updated");
+      callTarget.disabled = false;
     }
   };
 }
 
-function deleteItem(id) {
+function deleteItem(id, callTarget) {
+  callTarget.disabled = true;
   console.log(id);
   xhr.open("DELETE", `${baseUrl}/users/${id}`, true);
   xhr.setRequestHeader("Authorization", "admin");
@@ -60,6 +63,8 @@ function deleteItem(id) {
     if (xhr.status === 204) {
       console.log("item deleted");
       updateList();
+    } else {
+      callTarget.disabled = false;
     }
   };
 }
@@ -92,13 +97,13 @@ function fillTable(data) {
       const username = e.target.parentElement.parentElement.getElementsByClassName(
         "username"
       )[0].value;
-      updateItem(id, name, username);
+      updateItem(id, name, username, this);
     });
     _buttonsGroup.appendChild(btnUpdate);
     const btnDelete = createNode("button", "delete", null, "Delete");
     btnDelete.addEventListener("click", function (e) {
       const id = e.target.parentElement.dataset.id;
-      deleteItem(id);
+      deleteItem(id, this);
     });
     _buttonsGroup.appendChild(btnDelete);
 
