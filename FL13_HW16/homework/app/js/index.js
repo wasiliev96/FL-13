@@ -48,13 +48,11 @@ function fillTable(data) {
     _li.appendChild(userId);
     const uname = createNode("input", "name", null);
     uname.setAttribute("type", "text");
-    uname.setAttribute("placeholder", user.name);
-    uname.setAttribute("disabled", true);
+    uname.value = user.name;
     _li.appendChild(uname);
     const username = createNode("input", "username", null);
     username.setAttribute("type", "text");
-    username.setAttribute("placeholder", user.username);
-    username.setAttribute("disabled", true);
+    username.value = user.username;
     _li.appendChild(username);
 
     _li.appendChild(username);
